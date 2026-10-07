@@ -1,0 +1,111 @@
+---
+title: Settings reference
+description: Every tab and option in inkwell's Settings window, with what it does and its default.
+group: Customise
+order: 19
+related: [themes, shortcuts, collaboration, github-sync]
+---
+
+Open **Settings** with the button at the bottom of the sidebar. The window has ten tabs down the left side. Changes apply right away unless a **Save** button says otherwise.
+
+## Themes
+
+Pick and create themes. See [Themes and appearance](/docs/themes/).
+
+| Setting | What it does | Default |
+| --- | --- | --- |
+| Dark / Light theme cards | Applies a built-in theme. | Midnight |
+| **New theme** | Opens the custom theme editor. | – |
+
+## Appearance
+
+| Setting | What it does | Default |
+| --- | --- | --- |
+| **Mode** | Switches between a dark and a light theme (the last one you used of each). | Dark |
+| **Glass sidebar** | Shows the desktop through the sidebar. macOS only. | Off |
+| **Glass body** | Shows the desktop through the note list and editor. macOS only. | Off |
+| **Glass intensity** | How see-through the glass is, from 0% to 100%. Only shown when a glass option is on. | 50% |
+
+## Editor
+
+| Setting | What it does | Default |
+| --- | --- | --- |
+| **Font family** | The editor's typeface. Pick a built-in font or any font installed on your computer. | Inter |
+| **Font size** | **Small** 13px, **Default** 15px, **Medium** 17px, **Large** 19px. | Default (15px) |
+| **Line height** | **Compact** 1.4, **Default** 1.7, **Relaxed** 2.0, **Double** 2.4. | Default (1.7) |
+| **Vim mode** | Edit notes with Vim keybindings, including modal editing, motions and `:` commands. | Off |
+| **Default note mode** | **Normal** (one pane) or **Markdown** (source and preview side by side) for notes you haven't set individually. | Normal |
+
+A **Preview** under the options shows how your font choices look.
+
+## Features
+
+| Setting | What it does | Default |
+| --- | --- | --- |
+| **Canvas** | Adds the **Draw** page to the sidebar. See [Canvas](/docs/canvas/). | Off |
+| **Canvas storage** | Shows whether drawings are global or stored in a vault. **Link to a vault…** stores them in a chosen vault, and **Unlink** goes back. Only shown when Canvas is on. | Not linked (global) |
+
+## Shortcuts
+
+Lists the in-app shortcuts. Click a shortcut, press the keys you want, or press <Kbd keys="esc" /> to cancel. A shortcut must include <Kbd keys="mod" />, <Kbd keys="shift" /> or <Kbd keys="alt" /> so it doesn't fire while you type, and it can't match another shortcut. **Reset to defaults** restores all of them.
+
+| Shortcut | What it does | Default |
+| --- | --- | --- |
+| **Search** | Opens the search window. | <Kbd keys="mod+k" /> |
+| **Toggle Sidebar** | Shows or hides the sidebar. | <Kbd keys="mod+b" /> |
+| **Open File** | Opens a standalone `.md` file into this vault. | <Kbd keys="mod+o" /> |
+| **Find in Note** | Searches within the current note. | <Kbd keys="mod+f" /> |
+| **New Note** | Creates a note at the top level of the vault. | <Kbd keys="mod+shift+n" /> |
+| **New Folder** | Creates a folder inside the selected folder. | <Kbd keys="mod+shift+f" /> |
+
+See the full list in [Keyboard shortcuts](/docs/shortcuts/).
+
+## Abbreviations
+
+Type a trigger character plus a keyword and inkwell expands it. See [Expand shortcuts with abbreviations](/docs/writing/#expand-shortcuts-with-abbreviations).
+
+| Setting | What it does | Default |
+| --- | --- | --- |
+| **Trigger character** | The prefix that starts an abbreviation. Choose one of `:` `!` `;` `#` `$` `%` `^` `~` `|`. | `:` |
+| **Built-in** | `today`, `tomorrow`, `nextweek`, `nextmonth` and `now`. These can't be edited. | – |
+| **Custom** | Your own abbreviations. Click **Add abbreviation**, type a keyword and the text it expands to, then **Add**. Use the pencil to edit and the bin to delete. | None |
+
+Click **Save** to apply changes to the trigger or your list, or **Reset** to discard them.
+
+## Vaults
+
+Manage the vault you're in and switch to others. See [Vaults and your files](/docs/vaults-and-files/#switch-vaults).
+
+| Section | What it does |
+| --- | --- |
+| **Active** | The vault you have open and where it lives on disk. |
+| **Team** | **Share vault** and **Join a shared vault**, or a status line for a vault that's already shared. See [Real-time collaboration](/docs/collaboration/). |
+| **Other vaults** | **New vault**, **Open folder**, and your recent vaults with a **Switch** button. |
+
+## GitHub
+
+Connect GitHub to push and pull notes. See [GitHub sync](/docs/github-sync/).
+
+| Setting | What it does | Default |
+| --- | --- | --- |
+| **Personal Access Token** | Your GitHub token. Stored only on this computer. | Empty |
+| **Default Owner / Username** | Your GitHub username or organisation. | Empty |
+| **Save** / **Test connection** | Saves your details, and checks them by listing your repositories. | – |
+
+## Team
+
+Sign in, create teams, and invite people. See [Real-time collaboration](/docs/collaboration/).
+
+| Setting | What it does |
+| --- | --- |
+| **Sign in** / **Sign out** | Your inkwell account. Required only for collaboration. |
+| **Create a team** | Name and create a team. Each account can own up to 2. |
+| Team members | Invite by email, and remove members. |
+
+## About
+
+Shows the app **Version** and links to Tauri and CodeMirror, which inkwell is built with.
+
+<Callout type="note" title="TODO: verify">
+  Confirm the Appearance default for Mode (the app starts on Midnight), and whether **Font family**'s default is shown as "Inter" in the picker. A "Git Sync" section exists in the source but has no tab in the Settings window, so it is not documented here.
+</Callout>

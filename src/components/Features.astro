@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+import editor from "../assets/features/editor.svg";
+import extraNotes from "../assets/features/extra-notes.svg";
+import canvas from "../assets/features/canvas.svg";
+import githubSync from "../assets/features/github-sync.svg";
+import themes from "../assets/features/themes.svg";
+import exportShare from "../assets/features/export-share.svg";
+
+const features = [
+  {
+    title: "Write without distraction",
+    text: "A fast, focused editor with live markdown styling. Type / for quick formatting, switch between Edit, Split and Preview, and write with tables, task lists, code blocks and LaTeX math, all rendered as you type. Use any font installed on your computer.",
+    image: editor,
+  },
+  {
+    title: "Charts, tables and boards inside your notes",
+    text: "Notes don't have to be flat text. Add a chart, a sortable table, or a full Kanban board with tasks, due dates and subtasks directly inside a note, and see it rendered live in the editor.",
+    image: extraNotes,
+  },
+  {
+    title: "A canvas for thinking visually",
+    text: "Sketch diagrams, flows and mind maps in a built-in drawing canvas. Pick a shape, draw, connect and resize, or start from a Flowchart or Mind Map template and attach a note alongside.",
+    image: canvas,
+  },
+  {
+    title: "GitHub sync",
+    text: "Connect your GitHub account once, push any note to a repository as a .md file, and pull the latest version back with a click. It's a good fit for project READMEs and docs.",
+    image: githubSync,
+  },
+  {
+    title: "Themes and typography",
+    text: "Choose from eight built-in themes or build your own with a live preview. Code highlighting follows your theme, and on macOS you can turn on a frosted-glass sidebar.",
+    image: themes,
+  },
+  {
+    title: "Export and share",
+    text: "Export any note as Markdown, standalone HTML or PDF, with math and code highlighting carried over. Preview before you export, or copy to the clipboard in one click.",
+    image: exportShare,
+  },
+];
+---
+
+<section id="features" class="px-[clamp(1rem,4vw,2rem)] pb-12 md:pb-20">
+  <div class="mx-auto max-w-content">
+    <div data-reveal class="mx-auto max-w-lg text-center">
+      <h2 class="text-2xl font-semibold text-foreground md:text-3xl">
+        Everything you need to
+        <br />
+        write, plan and share.
+      </h2>
+      <p class="mt-4 text-lg leading-snug font-light text-muted-foreground md:text-xl">
+        From a distraction-free editor to charts, boards, a canvas and real-time
+        collaboration, all inside plain markdown files you own.
+      </p>
+    </div>
+
+    <ul data-stagger data-card-stack class="mx-auto mt-10 flex max-w-xl flex-col gap-4 md:mt-14 md:grid md:max-w-none md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+      {features.map((f, i) => (
+        <li style={`--i: ${i}`} class="max-md:sticky max-md:top-[calc(1rem+var(--i)*1.25rem)] max-md:origin-top flex flex-col rounded-3xl border border-border bg-card p-6 shadow-[0_2px_8px_rgb(0_0_0/0.06)] md:p-8">
+          <h3 class="text-lg font-semibold text-foreground">{f.title}</h3>
+          <p class="mt-3 text-base leading-snug font-light text-muted-foreground">
+            {f.text}
+          </p>
+          <Image
+            class="mx-auto mt-auto h-auto w-full max-w-[17rem] pt-8"
+            src={f.image}
+            alt=""
+            width={268}
+            height={200}
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

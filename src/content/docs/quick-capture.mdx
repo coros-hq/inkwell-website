@@ -1,0 +1,64 @@
+---
+title: Quick capture
+description: Jot down a note from anywhere on your computer with a global shortcut, without opening the main window.
+group: Organise
+order: 13
+related: [organising-notes, external-changes, settings]
+---
+
+Quick capture is a small pop-up for ideas that can't wait. It works even when inkwell's window is hidden.
+
+## Capture a note
+
+1. Press <Kbd keys="mod+n" /> from any app. A **Quick Note** window opens in the middle of the screen and stays on top of other windows.
+2. Type your note. It supports markdown, including the same `/` commands as the main editor.
+3. Press <Kbd keys="mod+enter" />, or click **Save**.
+
+The window briefly shows **Saved** and closes. Press <Kbd keys="esc" /> to close it without saving.
+
+<Screenshot
+  alt="The Quick Note window with a short note typed and the vault name at the top"
+  caption="Capture the Quick Note pop-up over another app, with some text typed and the vault chooser visible."
+/>
+
+<Callout type="note">
+  The pop-up's `/` menu leaves out `/chart`, `/board` and `/task`, because there's no full editor behind it.
+</Callout>
+
+## Choose where it goes
+
+The name at the top-left of the window is the vault your note will be saved in. By default it's the vault you last used.
+
+- Click the name to pick another vault from your recent vaults.
+- Choose **Choose another folder…** to use any folder.
+
+## How your note is saved
+
+Captured notes land in a folder called **Quick Notes** inside the chosen vault. If the folder doesn't exist, inkwell creates it. Each note is an ordinary `.md` file:
+
+- The **title** is the first `# Heading` if you wrote one, otherwise the first line (up to 80 characters), otherwise "Quick Note".
+- The **file name** is the title plus a timestamp, for example `buy-milk-1768473000000.md`, so nothing is overwritten.
+
+You don't need the vault to be open in the main window, so you can capture into one vault while working in another.
+
+## Open the pop-up from the menu bar
+
+inkwell puts an icon in your menu bar (macOS) or system tray (Windows and Linux). Click it for:
+
+| Item | What it does |
+| --- | --- |
+| **Open inkwell** | Brings the main window forward. |
+| **New Quick Note** | Opens the capture pop-up. |
+| **Quit inkwell** | Closes the app completely. |
+
+<Callout type="warning" title="Closing the window doesn't quit inkwell">
+  When you close the main window, inkwell hides itself and keeps running, so the shortcut still works. To really quit, use **Quit inkwell** in the tray menu, or <Kbd keys="mod+q" /> on macOS.
+</Callout>
+
+## If the shortcut doesn't work
+
+<Kbd keys="mod+n" /> is registered system-wide. If another app has already claimed it, inkwell can't register it. Use the tray icon instead, or free up the shortcut in the other app. See [Troubleshooting](/docs/troubleshooting/).
+
+<Callout type="note" title="TODO: verify">
+  Confirm that a quick note appears in the main window's sidebar right away when that vault is open (via the file watcher), and whether the global shortcut can be changed. It's fixed to <Kbd keys="mod+n" /> in the source I read, and **Settings → Shortcuts** only lists in-app shortcuts.
+</Callout>

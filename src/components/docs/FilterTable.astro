@@ -1,0 +1,42 @@
+---
+/** Wraps a markdown table with a filter box. */
+interface Props {
+	label?: string;
+}
+const { label = 'Filter' } = Astro.props;
+---
+
+<div class="my-6" data-filter-table>
+	<label class="mb-3 block">
+		<span class="sr-only">{label}</span>
+		<input
+			type="search"
+			placeholder={`${label}…`}
+			class="w-full rounded-lg border border-input bg-card px-3 py-2 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-2 focus-visible:outline-accent"
+			data-filter-input
+		/>
+	</label>
+	<div class="overflow-x-auto">
+		<slot />
+	</div>
+	<p class="mt-2 hidden text-sm text-muted-foreground" data-filter-empty>No matches.</p>
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-filter-table]').forEach((wrap) => {
+		const input = wrap.querySelector<HTMLInputElement>('[data-filter-input]')!;
+		const rows = Array.from(wrap.querySelectorAll<HTMLTableRowElement>('tbody tr'));
+		const empty = wrap.querySelector<HTMLElement>('[data-filter-empty]')!;
+		input.addEventListener('input', () => {
+			const words = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+			let shown = 0;
+			rows.forEach((r) => {
+				const text = Array.from(r.cells, (c) => c.textContent ?? '').join(' ').toLowerCase();
+				const hit = words.every((w) => text.includes(w));
+				r.hidden = !hit;
+				if (hit) shown++;
+			});
+			empty.classList.toggle('hidden', shown > 0);
+		});
+	});
+</script>

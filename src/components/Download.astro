@@ -1,0 +1,60 @@
+---
+import mac from "../assets/download/mac.svg";
+import windows from "../assets/download/windows.svg";
+import linux from "../assets/download/linux.svg";
+
+// TODO: point these at the real release assets
+const platforms = [
+  { name: "macOS", note: "Apple silicon & Intel", icon: mac, href: "#" },
+  { name: "Windows", note: "Windows 10 and later", icon: windows, href: "#" },
+  { name: "Linux", note: "AppImage & .deb", icon: linux, href: "#" },
+];
+---
+
+<section id="download" class="px-[clamp(1rem,4vw,2rem)] pb-16 md:pb-24">
+  <div data-reveal="scale" class="relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-border bg-surface p-6 shadow-[0_2px_8px_rgb(0_0_0/0.06)] md:p-12 lg:p-16">
+    <div class="text-center">
+      <span class="inline-block rounded-full bg-tag-bg px-3 py-1 text-sm font-medium text-tag-text">
+        Free &amp; open source
+      </span>
+      <h2 class="mt-4 text-3xl font-semibold text-foreground md:text-4xl">
+        Download Inkwell
+      </h2>
+      <p class="mx-auto mt-4 max-w-md text-lg leading-snug font-light text-muted-foreground md:text-xl">
+        Free on every desktop. Open it, pick a folder, and start writing. No
+        account, no sign-up.
+      </p>
+
+      <ul data-stagger class="mx-auto mt-8 grid max-w-md gap-3">
+        {platforms.map((p) => (
+          <li>
+            <a
+              href={p.href}
+              class="group flex items-center gap-4 rounded-2xl border border-border bg-card px-5 py-4 text-left no-underline shadow-[0_2px_8px_rgb(0_0_0/0.05)] transition hover:-translate-y-0.5 hover:border-accent hover:shadow-[0_6px_16px_rgb(0_0_0/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <span
+                class="size-7 shrink-0 bg-foreground"
+                style={`mask: url(${p.icon.src}) center / contain no-repeat; -webkit-mask: url(${p.icon.src}) center / contain no-repeat`}
+                aria-hidden="true"
+              />
+              <span class="flex-1">
+                <span class="block text-lg font-semibold text-foreground">
+                  Download for {p.name}
+                </span>
+                <span class="block text-sm font-light text-muted-foreground">
+                  {p.note}
+                </span>
+              </span>
+              <span
+                class="text-xl text-tertiary transition group-hover:translate-x-1 group-hover:text-tag-text"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

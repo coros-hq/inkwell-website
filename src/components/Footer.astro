@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.svg";
+
+// TODO: point external links (GitHub, license) at the real URLs
+const links = [
+  { label: "Features", href: "#features" },
+  { label: "Your files", href: "#your-files" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Download", href: "#download" },
+  { label: "Docs", href: "/docs/" },
+  { label: "GitHub", href: "#" },
+];
+// On the landing page anchors scroll in place; elsewhere they point back to it.
+const prefix = Astro.url.pathname === '/' ? '' : '/';
+const year = new Date().getFullYear();
+---
+
+<footer
+  data-reveal
+  class="border-t border-border bg-sidebar px-[clamp(1rem,4vw,2rem)] py-10"
+>
+  <div class="mx-auto flex max-w-content flex-col items-center gap-6 md:flex-row md:justify-between">
+    <a
+      class="flex items-center gap-3 text-foreground no-underline"
+      href="/"
+      aria-label="Inkwell home"
+    >
+      <Image
+        class="h-auto w-5"
+        src={logo}
+        alt="inkwell-logo"
+        width={26}
+        height={26}
+      />
+      <span class="text-xl">Inkwell</span>
+    </a>
+
+    <nav aria-label="Footer">
+      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        {links.map((l) => (
+          <li>
+            <a
+              class="font-light text-muted-foreground no-underline transition hover:text-foreground"
+              href={l.href.length > 1 && l.href.startsWith('#') ? prefix + l.href : l.href}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <p class="text-sm font-light text-muted-foreground">
+      © {year} inkwell. Open source under the MIT license.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,103 @@
+---
+import { Palette, Check } from '@lucide/astro';
+import { themes, DEFAULT_THEME_ID } from '../lib/themes';
+
+const options = themes.map((t) => ({ id: t.id, label: t.label, description: t.id === DEFAULT_THEME_ID ? `${t.description} (default)` : t.description, bg: t.bg, accent: t.accent }));
+---
+
+<div class="relative" data-theme-switcher>
+	<button
+		type="button"
+		class="grid size-10 cursor-pointer place-items-center rounded-full text-inherit transition hover:bg-current/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+		aria-label="Choose theme"
+		aria-haspopup="true"
+		aria-expanded="false"
+		data-theme-toggle
+	>
+		<Palette size={26} aria-hidden="true" />
+	</button>
+
+	<div
+		hidden
+		data-theme-panel
+		role="group"
+		aria-label="Theme"
+		class="absolute top-full right-0 z-50 mt-3 w-72 rounded-2xl border border-border bg-card p-2 text-card-foreground shadow-[0_12px_32px_rgb(0_0_0/0.25)]"
+	>
+		<p class="px-3 pt-2 pb-1 text-sm font-medium text-muted-foreground">Try Inkwell's themes</p>
+		<ul class="max-h-[60vh] overflow-y-auto" data-lenis-prevent>
+			{
+				options.map((o) => (
+					<li>
+						<button
+							type="button"
+							data-theme-option={o.id}
+							aria-pressed="false"
+							class="flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-left transition hover:bg-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent aria-pressed:bg-active"
+						>
+							<span class="flex shrink-0 -space-x-1.5" aria-hidden="true">
+								<span class="size-6 rounded-full border border-border-strong" style={`background:${o.bg}`} />
+								<span class="size-6 rounded-full border border-border-strong" style={`background:${o.accent}`} />
+							</span>
+							<span class="min-w-0 flex-1">
+								<span class="block text-base font-medium text-foreground">{o.label}</span>
+								<span class="block truncate text-sm text-muted-foreground">{o.description}</span>
+							</span>
+							<Check size={18} class="invisible text-tag-text" data-theme-check aria-hidden="true" />
+						</button>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>
+
+<script>
+	const KEY = 'inkwell-theme-v2';
+	const root = document.documentElement;
+	const wrap = document.querySelector<HTMLElement>('[data-theme-switcher]');
+	if (wrap) {
+		const toggle = wrap.querySelector<HTMLButtonElement>('[data-theme-toggle]')!;
+		const panel = wrap.querySelector<HTMLElement>('[data-theme-panel]')!;
+		const options = Array.from(wrap.querySelectorAll<HTMLButtonElement>('[data-theme-option]'));
+
+		const DEFAULT = 'graphite';
+		const current = () => root.dataset.theme ?? DEFAULT;
+
+		const render = () => {
+			options.forEach((o) => {
+				const on = o.dataset.themeOption === current();
+				o.setAttribute('aria-pressed', String(on));
+				o.querySelector('[data-theme-check]')?.classList.toggle('invisible', !on);
+			});
+		};
+
+		const apply = (id: string) => {
+			if (id === DEFAULT) delete root.dataset.theme;
+			else root.dataset.theme = id;
+			try {
+				localStorage.setItem(KEY, id);
+			} catch {}
+			render();
+		};
+
+		const setOpen = (open: boolean) => {
+			panel.hidden = !open;
+			toggle.setAttribute('aria-expanded', String(open));
+		};
+
+		toggle.addEventListener('click', () => setOpen(panel.hidden));
+		options.forEach((o) => o.addEventListener('click', () => apply(o.dataset.themeOption!)));
+		document.addEventListener('click', (e) => {
+			if (!panel.hidden && !wrap.contains(e.target as Node)) setOpen(false);
+		});
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && !panel.hidden) {
+				setOpen(false);
+				toggle.focus();
+			}
+		});
+
+		render();
+	}
+</script>

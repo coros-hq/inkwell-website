@@ -1,0 +1,105 @@
+---
+title: Real-time collaboration
+description: Share a vault with teammates, edit the same notes together, and keep working offline.
+group: Share
+order: 14
+related: [vaults-and-files, settings, external-changes, troubleshooting]
+---
+
+You can write on your own without ever creating an account. An account is only needed when you want to share a vault and edit it live with other people.
+
+<Callout type="note">
+  Your files always stay on your own disk. When you share a vault, inkwell also keeps a synced copy of its notes, folders, boards and attachments in the collaboration service so your teammates' devices can stay up to date. Vaults you don't share are never sent anywhere.
+</Callout>
+
+## Sign in or create an account
+
+1. Open **Settings → Team**.
+2. Click **Sign in**.
+3. Enter your email and a password, then click **Sign in**. New here? Choose **New here? Create an account** and click **Create account**.
+
+Once you're signed in, **Settings → Team** shows your email. Use **Sign out** when you're done.
+
+## Create a team (optional)
+
+A team is a group of people you can share vaults with in one step. You can skip teams and invite people one at a time instead.
+
+1. In **Settings → Team**, type a **Team name** and click **Create**.
+2. Invite people by email. They'll see the team automatically when they sign up or sign in with that email.
+
+Each account can own up to **2 teams**. There's no limit on how many teams you can be invited to.
+
+## Share a vault
+
+1. Open the vault you want to share.
+2. Click **Share vault** under **Settings → Vaults → Team**, or the **Share this vault** button in the editor's top bar.
+3. Under **Access**, choose **Only people I invite**, or **Everyone in** one of your teams (they can edit).
+4. Click **Share vault**.
+
+Everyone with access gets the whole vault: notes, folders, boards and attachments.
+
+<Screenshot
+  alt="The Share vault window showing Access, an email invite field, an invite link and the people with access"
+  caption="Capture the Share dialog on an already-shared vault with one invited person and one active member."
+/>
+
+### Invite people
+
+Open the share window for a shared vault (you must be its owner):
+
+- **Invite by email.** Type an address, choose **Can edit** or **Can view**, and click **Invite**. They get access as soon as they sign in to inkwell with that email.
+- **Invite link.** Choose a role and click **Create link**, then copy it. Links expire after 7 days. Anyone who has the link and signs in can join.
+
+Under **People with access** you can change someone's role between **Owner**, **Can edit** and **Can view**, or remove them with the **×**. People you've invited but who haven't joined yet are marked **invited**.
+
+### Roles
+
+| Role | What they can do |
+| --- | --- |
+| **Owner** | Everything, including inviting people, changing roles and removing access. |
+| **Can edit** | Read and edit notes and boards. |
+| **Can view** | Read only. |
+
+## Join a shared vault
+
+1. Open **Settings → Vaults** and click **Join a shared vault**.
+2. Either paste an **invite link** (it looks like `inkwell://join/…`) and click **Join**, or pick a vault under **Shared with you**.
+3. Choose an **empty folder** on your computer.
+
+The notes, folders, boards and attachments download into that folder and stay in sync. If you click an `inkwell://join/…` link, inkwell opens this window with the link filled in.
+
+<Callout type="warning" title="Pick an empty folder">
+  If the folder already has notes in it, inkwell stops and asks you to choose another, because anything inside would be uploaded to the shared vault.
+</Callout>
+
+You must be signed in first, otherwise inkwell tells you to sign in under **Settings → Team**.
+
+## Edit together
+
+While a vault is shared, the top bar of each note shows small coloured avatars for the other people who are in the vault. Avatars for people editing the **same note** are shown first and in full colour, and hovering one shows their email.
+
+You can see your teammates' cursors and selections in the note as they type, each in that person's colour and labelled with their name. Edits from different people are merged as they happen, even when two of you type in the same paragraph.
+
+A status indicator on the Share button tells you where syncing stands: **Synced**, **Syncing…**, **Offline — changes sync when you reconnect**, or **Sync error — retrying**.
+
+## Work offline
+
+You can keep writing without a connection. Your edits are stored on your computer and merged with everyone else's when you're back online. Nothing is dropped and nothing is overwritten.
+
+## What's shared and what stays local
+
+| Synced with your team | Stays on your computer |
+| --- | --- |
+| Notes and their folder structure | Your themes, fonts and other settings |
+| Boards, columns and tasks | Your [Canvas](/docs/canvas/) |
+| Attachments added to notes | Other vaults you haven't shared |
+| | Anything outside the shared vault folder |
+
+## Stop sharing or leave
+
+- **Leave on this device.** In the share window, click **Stop syncing on this device**, then **Stop**. Your files stay where they are; only syncing ends.
+- **Remove someone.** An owner clicks **×** next to their name. Their devices stop syncing and keep a local copy of what they already had.
+
+<Callout type="note" title="TODO: verify">
+  Confirm with the product team: (1) whether the official release is connected to the collaboration service out of the box, (2) whether `.inkwell/app.json` data such as note links is part of what's shared, (3) attachment size limits for shared vaults, and (4) what viewers see when they try to type.
+</Callout>

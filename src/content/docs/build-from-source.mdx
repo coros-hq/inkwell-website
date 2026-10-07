@@ -1,0 +1,97 @@
+---
+title: Build from source
+description: Set up the tools, run inkwell in development, and build installers for macOS, Windows and Linux.
+group: Reference
+order: 22
+related: [getting-started, troubleshooting]
+---
+
+This page is for developers. If you just want to use inkwell, see [Getting started](/docs/getting-started/).
+
+inkwell is a [Tauri v2](https://tauri.app) desktop app. The interface is React 19 and TypeScript on top of CodeMirror 6, and the native side is Rust.
+
+## What you need
+
+- [Node.js](https://nodejs.org) 18 or newer
+- [pnpm](https://pnpm.io)
+- [Rust](https://rustup.rs), stable toolchain
+- Platform tools:
+
+| System | Install |
+| --- | --- |
+| macOS | Xcode Command Line Tools: `xcode-select --install` |
+| Windows | [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) and WebView2 (already included in Windows 11) |
+| Linux | `libwebkit2gtk-4.1-dev`, `libappindicator3-dev`, `librsvg2-dev`, `patchelf` |
+
+## Run in development
+
+```bash
+git clone https://github.com/your-username/inkwell.git
+cd inkwell
+pnpm install
+pnpm tauri dev
+```
+
+`pnpm tauri dev` starts the Vite dev server on port 1420, opens the app window, and reloads the interface when you edit the frontend. It recompiles the Rust side when that changes.
+
+<Callout type="note" title="TODO: verify">
+  The README's clone URL is a placeholder (`your-username`). Replace it with the real repository address.
+</Callout>
+
+## Build installers
+
+```bash
+pnpm tauri build
+```
+
+Installers are written to `src-tauri/target/release/bundle/`:
+
+| System | Output |
+| --- | --- |
+| macOS | `.app` and `.dmg` |
+| Windows | `.exe` and `.msi` |
+| Linux | `.deb`, `.rpm` and `.AppImage` |
+
+On macOS, to update an existing install by hand, drag the new `.app` onto the old one in `/Applications` and click **Replace**.
+
+## Collaboration settings
+
+Real-time collaboration talks to a Supabase project. The values are baked into the app at build time, so set them in a `.env` file at the project root **before** you build:
+
+```bash
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+```
+
+Without them, the app still works as a local notes app, but signing in, sharing and joining vaults fail. The database schema lives in `supabase/schema.sql` and `supabase/migrations/`.
+
+## Project structure
+
+```text
+inkwell/
+├── src/
+│   ├── components/
+│   │   ├── editor/      MarkdownEditor, RichPreview, charts, tables, attachments, share dialog
+│   │   ├── layout/      AppShell, Sidebar, NoteList, EditorPane
+│   │   ├── board/       Kanban board, columns, cards, task drawer
+│   │   ├── canvas/      Canvas view, toolbar, templates, notes sheet
+│   │   ├── collab/      Share dialog, presence avatars
+│   │   ├── settings/    Settings dialog, theme editor, font picker
+│   │   └── shared/      Search, context menu, GitHub sync, vault picker
+│   ├── store/           Zustand store (useAppStore)
+│   ├── lib/             vault, vault watcher, github, export, editor extensions, themes, sync
+│   ├── styles/          globals.css (CSS variables and theme definitions)
+│   └── types/           TypeScript interfaces
+├── src-tauri/
+│   ├── src/lib.rs       Tauri commands, tray, global shortcut, quick-note window
+│   └── tauri.conf.json  Window config, updater, deep links
+└── supabase/            Database schema and migrations
+```
+
+## Releases
+
+Pushing a tag that starts with `v` runs the release workflow in `.github/workflows/release.yml`, which builds macOS (universal), Windows and Linux installers and publishes the updater manifest that inkwell's built-in updater reads.
+
+<Callout type="note" title="TODO: verify">
+  The release workflow needs the Supabase values and a release token set as repository secrets. Confirm the full list with whoever maintains the pipeline before documenting it for contributors.
+</Callout>

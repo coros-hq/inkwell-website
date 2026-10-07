@@ -1,0 +1,139 @@
+---
+import { Search } from '@lucide/astro';
+---
+
+<button
+	type="button"
+	data-docs-search-open
+	class="flex h-10 cursor-pointer items-center gap-2 rounded-lg border border-border bg-card px-3 text-sm text-muted-foreground transition hover:border-border-strong hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+	aria-label="Search the docs"
+	aria-haspopup="dialog"
+>
+	<Search size={16} aria-hidden="true" />
+	<span class="hidden sm:inline">Search</span>
+	<kbd class="kbd ml-1 hidden sm:inline-flex"><span data-os="mac">⌘K</span><span data-os="other">Ctrl+K</span></kbd>
+</button>
+
+<dialog
+	data-docs-search
+	aria-label="Search the docs"
+	class="m-0 mx-auto mt-[10vh] w-[min(40rem,calc(100vw-2rem))] rounded-2xl border border-border bg-card p-0 text-card-foreground shadow-[0_24px_64px_rgb(0_0_0/0.3)] backdrop:bg-black/40"
+>
+	<form method="dialog" class="flex items-center gap-3 border-b border-border px-4">
+		<Search size={18} class="text-muted-foreground" aria-hidden="true" />
+		<input
+			type="search"
+			data-docs-search-input
+			placeholder="Search the docs…"
+			autocomplete="off"
+			spellcheck="false"
+			class="h-14 min-w-0 flex-1 bg-transparent text-lg text-foreground outline-none placeholder:text-muted-foreground"
+		/>
+		<button class="cursor-pointer rounded-md px-2 py-1 text-sm text-muted-foreground hover:text-foreground" value="close">Esc</button>
+	</form>
+	<ul class="max-h-[60vh] overflow-y-auto p-2" data-docs-search-results role="listbox" aria-label="Results"></ul>
+	<p class="px-4 py-6 text-center text-muted-foreground" data-docs-search-empty>Type to search every docs page.</p>
+</dialog>
+
+<script>
+	import FlexSearch from 'flexsearch';
+
+	interface Section {
+		id: number;
+		title: string;
+		heading: string;
+		url: string;
+		text: string;
+	}
+
+	const dialog = document.querySelector<HTMLDialogElement>('[data-docs-search]')!;
+	const input = dialog.querySelector<HTMLInputElement>('[data-docs-search-input]')!;
+	const list = dialog.querySelector<HTMLUListElement>('[data-docs-search-results]')!;
+	const empty = dialog.querySelector<HTMLElement>('[data-docs-search-empty]')!;
+
+	let index: any;
+	let docs: Section[] = [];
+	let loading: Promise<void> | undefined;
+	let active = -1;
+
+	const load = () =>
+		(loading ??= fetch('/docs/search-index.json')
+			.then((r) => r.json())
+			.then((data: Section[]) => {
+				docs = data;
+				index = new FlexSearch.Document({
+					tokenize: 'forward',
+					document: { id: 'id', index: ['title', 'heading', 'text'] },
+				});
+				data.forEach((d) => index.add(d));
+			}));
+
+	const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+
+	const snippet = (text: string, q: string) => {
+		const i = text.toLowerCase().indexOf(q.toLowerCase().split(/\s+/)[0]);
+		const start = Math.max(0, i - 40);
+		return (start ? '…' : '') + text.slice(start, start + 120) + (text.length > start + 120 ? '…' : '');
+	};
+
+	const render = async () => {
+		const q = input.value.trim();
+		list.innerHTML = '';
+		active = -1;
+		if (!q) {
+			empty.textContent = 'Type to search every docs page.';
+			empty.hidden = false;
+			return;
+		}
+		await load();
+		const seen = new Set<number>();
+		const hits: Section[] = [];
+		for (const field of index.search(q, { limit: 12 }) as { result: number[] }[]) {
+			for (const id of field.result) {
+				if (!seen.has(id)) {
+					seen.add(id);
+					hits.push(docs[id]);
+				}
+			}
+		}
+		empty.hidden = hits.length > 0;
+		empty.textContent = `No results for “${q}”.`;
+		list.innerHTML = hits
+			.slice(0, 10)
+			.map(
+				(h) => `<li role="option"><a href="${h.url}" class="block rounded-lg px-3 py-2 no-underline hover:bg-muted focus-visible:bg-muted focus-visible:outline-none aria-selected:bg-active" data-hit>
+					<span class="block text-sm text-muted-foreground">${esc(h.title)}${h.heading ? ' › ' + esc(h.heading) : ''}</span>
+					<span class="block text-base text-foreground">${esc(snippet(h.text, q))}</span></a></li>`,
+			)
+			.join('');
+	};
+
+	const open = () => {
+		dialog.showModal();
+		input.select();
+		load();
+	};
+
+	document.querySelectorAll('[data-docs-search-open]').forEach((b) => b.addEventListener('click', open));
+	document.addEventListener('keydown', (e) => {
+		if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+			e.preventDefault();
+			dialog.open ? dialog.close() : open();
+		}
+	});
+	dialog.addEventListener('click', (e) => e.target === dialog && dialog.close());
+	input.addEventListener('input', render);
+	dialog.addEventListener('keydown', (e) => {
+		const hits = Array.from(list.querySelectorAll<HTMLAnchorElement>('[data-hit]'));
+		if (!hits.length || (e.key !== 'ArrowDown' && e.key !== 'ArrowUp' && e.key !== 'Enter')) return;
+		if (e.key === 'Enter') {
+			if (active >= 0) hits[active].click();
+			else hits[0].click();
+			return;
+		}
+		e.preventDefault();
+		active = (active + (e.key === 'ArrowDown' ? 1 : -1) + hits.length) % hits.length;
+		hits.forEach((h, i) => h.setAttribute('aria-selected', String(i === active)));
+		hits[active].scrollIntoView({ block: 'nearest' });
+	});
+</script>

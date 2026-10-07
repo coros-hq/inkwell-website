@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import local from "../assets/value-strip/local.svg";
+import rich from "../assets/value-strip/rich.svg";
+import connected from "../assets/value-strip/connected.svg";
+
+const items = [
+  {
+    title: "Local-first",
+    text: "Every note is a real .md file in a vault on your disk. Back it up, sync it, or open it in any other editor.",
+    icon: local,
+  },
+  {
+    title: "Rich, not heavy",
+    text: "Charts, tables, math, Kanban boards and a drawing canvas live right inside your markdown.",
+    icon: rich,
+  },
+  {
+    title: "Connected",
+    text: "Collaborate in real time, sync with GitHub, and let Claude read and write your notes.",
+    icon: connected,
+  },
+];
+---
+
+<section class="px-[clamp(1rem,4vw,2rem)] pt-12 pb-12 md:pt-20 md:pb-20">
+  <div class="mx-auto max-w-content">
+    <div data-reveal class="mx-auto max-w-lg text-center">
+      <h2 class="text-2xl font-semibold text-foreground md:text-3xl">
+        Built around your files, not ours.
+      </h2>
+      <p class="mt-4 text-xl leading-snug font-light text-muted-foreground md:text-2xl">
+        Local-first by design, rich where it counts, and connected only when you
+        choose.
+      </p>
+    </div>
+
+    <ul data-stagger class="mx-auto mt-10 grid max-w-xl gap-4 md:mt-14 md:max-w-none md:grid-cols-3 md:gap-6">
+      {items.map((item) => (
+        <li class="flex items-center justify-between gap-4 rounded-3xl border border-border bg-card p-6 shadow-[0_2px_8px_rgb(0_0_0/0.06)] md:flex-col-reverse md:items-start md:justify-end md:gap-6 md:p-8">
+          <div class="max-w-[20rem]">
+            <h3 class="text-xl font-semibold text-foreground">{item.title}</h3>
+            <p class="mt-4 text-lg leading-snug font-light text-muted-foreground">
+              {item.text}
+            </p>
+          </div>
+          <Image
+            class="size-32 shrink-0 rounded-2xl"
+            src={item.icon}
+            alt=""
+            width={128}
+            height={128}
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

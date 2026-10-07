@@ -1,0 +1,83 @@
+---
+title: Getting started
+description: Install inkwell, pick a folder for your notes, and write your first note.
+group: Start
+order: 1
+related: [vaults-and-files, writing, organising-notes]
+---
+
+inkwell keeps your notes as ordinary markdown files in a folder you choose. This page takes you from install to your first note in a few minutes.
+
+## Install inkwell
+
+inkwell runs on macOS, Windows and Linux. Download the installer for your system:
+
+| System | What you get |
+| --- | --- |
+| macOS | `.dmg` / `.app` |
+| Windows | `.exe` / `.msi` |
+| Linux | `.deb`, `.rpm` or `.AppImage` |
+
+<Callout type="note" title="TODO: verify">
+  The public download links aren't published yet. Link each row above to the real release asset once the first release is live.
+</Callout>
+
+inkwell checks for new versions in the background. When one is available, an **Update available · vX.Y.Z** button appears at the bottom of the sidebar. Click it to download and install; the app restarts by itself.
+
+## Open inkwell for the first time
+
+On first launch inkwell asks you to **choose a folder to store your notes**. That folder is called a *vault*. You have two choices:
+
+1. **Open Vault** – pick a folder you already use. Every `.md` file inside it shows up as a note.
+2. **New Vault** – pick a folder to start fresh. inkwell adds a short **Welcome to inkwell** note in a `getting-started` folder so the vault isn't empty.
+
+<Screenshot
+  alt="The vault picker with Open Vault, New Vault and a Recent list"
+  caption="Capture the first-launch screen with at least one entry under Recent."
+/>
+
+The picker also lists your **Recent** vaults, with when you last opened each one. Click one to jump back in. After your first launch, inkwell reopens the vault you used last.
+
+<Callout type="tip">
+  Not sure where to put it? A plain folder in Documents works well. You can [switch vaults](/docs/vaults-and-files/#switch-vaults) any time.
+</Callout>
+
+## Find your way around
+
+inkwell has three areas, from left to right.
+
+**The sidebar** holds your library and tools:
+
+- The **Inkwell** header with buttons to create a **New folder**, a **New note**, and to **Open file…** (<Kbd keys="mod+o" />).
+- A **Search** box (<Kbd keys="mod+k" />).
+- **Pinned** notes, then your **Library**: the folders and notes in your vault.
+- **Quick Access** with **Board** for task boards, plus **Draw** if you've turned the canvas on in [Settings](/docs/settings/).
+- **Settings** at the very bottom.
+
+**The note list** shows the notes in whichever folder you picked (or **Unfiled** for notes at the top level of the vault). Sort them by **Date** or **Name**. You can swap the list for tabs, covered in [Organising notes](/docs/organising-notes/#note-list-or-tabs).
+
+**The editor** is where you write. Along the top you'll see the note's title, a **Saved just now** indicator, and buttons for pinning, links, attachments, sharing and more.
+
+<Screenshot
+  alt="The inkwell window with the sidebar, note list and editor labelled"
+  caption="Capture a window with a few notes and one open, so all three areas are visible."
+/>
+
+## Write your first note
+
+1. Click **New note** (the pen icon) at the top of the sidebar. A note called **Untitled** opens.
+2. Click the title at the top of the editor and give it a name, or type a `# Heading` on the first line.
+3. Start writing. Type `/` on an empty line to see formatting commands.
+4. That's it. inkwell saves as you type, and the indicator reads **Saved just now**.
+
+Your note is now a real file, for example `my-first-note.md`, inside your vault folder. Open the folder in Finder or Explorer to see it.
+
+<Callout type="note">
+  A note's title comes from the first `# Heading` in the file. If there isn't one, inkwell falls back to the file name.
+</Callout>
+
+## What to read next
+
+- [Writing in the editor](/docs/writing/) for formatting, `/` commands and the two editor modes.
+- [Organising notes](/docs/organising-notes/) for folders, pinning and drag-and-drop.
+- [Themes and appearance](/docs/themes/) to make inkwell look the way you like.

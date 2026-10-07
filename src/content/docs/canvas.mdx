@@ -1,0 +1,106 @@
+---
+title: Canvas
+description: Sketch diagrams, flows and mind maps on an infinite canvas, start from templates, and attach notes to shapes.
+group: Organise
+order: 12
+related: [organising-notes, settings, vaults-and-files]
+---
+
+The canvas is a freehand drawing and diagramming space. Use it for flowcharts, mind maps, wireframes or just thinking out loud.
+
+## Turn the canvas on
+
+The canvas is optional and off by default.
+
+1. Open **Settings** at the bottom of the sidebar.
+2. Go to **Features**.
+3. Switch on **Canvas**.
+
+A **Draw** entry now appears under **Quick Access** in the sidebar. Click it to open the canvas.
+
+<Screenshot
+  alt="The Draw canvas with a flowchart, the toolbar and the shortcut sheet"
+  caption="Capture the canvas with a small flowchart and the bottom toolbar visible."
+/>
+
+## Tools
+
+Pick a tool from the toolbar, or press its key:
+
+| Tool | Key | Use it to |
+| --- | --- | --- |
+| Select | <kbd class="kbd">V</kbd> | Click, drag, and resize shapes. |
+| Pen | <kbd class="kbd">P</kbd> | Draw freehand. |
+| Rectangle | <kbd class="kbd">R</kbd> | Draw boxes. |
+| Ellipse | <kbd class="kbd">E</kbd> | Draw ovals and circles. |
+| Line | <kbd class="kbd">L</kbd> | Draw straight lines. |
+| Arrow | <kbd class="kbd">A</kbd> | Draw arrows to connect shapes. |
+| Text | <kbd class="kbd">T</kbd> | Add text anywhere. |
+| Sticky note | <kbd class="kbd">S</kbd> | Drop a sticky note. |
+
+Press <Kbd keys="esc" /> to go back to the Select tool.
+
+## Style your shapes
+
+The toolbar controls apply to the shape you're drawing, or to the shape you have selected.
+
+- **Colour.** A 12-colour palette sits in the toolbar.
+- **Fill.** Click **fill** to add or remove a tinted fill. It works on rectangles and ellipses.
+- **Stroke width.** Choose thin (1.5 px), medium (3 px) or thick (6 px).
+- **Corner radius.** For rectangles, a **corner** control rounds the corners. Click **+** or **−** to change it.
+- **Text.** For text, pick a **size** (12, 16, 24 or 36), a font (**Sans**, **Serif** or **Mono**), and **B** for bold or **I** for italic.
+
+To type inside a shape or edit existing text, double-click it. Press <Kbd keys="mod+enter" /> or <Kbd keys="esc" /> to finish.
+
+The toolbar also has **Sketchy style**, which gives shapes a hand-drawn look (on by default), and **Show grid** / **Hide grid** for the dotted background.
+
+## Select, move and arrange
+
+| Do this | To |
+| --- | --- |
+| Drag on an empty area | Draw a selection box (lasso) around shapes. |
+| <Kbd keys="shift" /> + click | Add or remove a shape from the selection. |
+| <Kbd keys="mod+a" /> | Select everything. |
+| Drag a handle | Resize the selected shape. |
+| Arrow keys | Nudge by 1 px. Hold <Kbd keys="shift" /> for 10 px. |
+| <Kbd keys="mod+d" /> | Duplicate. |
+| <Kbd keys="mod+c" />, <Kbd keys="mod+x" />, <Kbd keys="mod+v" /> | Copy, cut and paste. |
+| <Kbd keys="mod+g" /> / <Kbd keys="mod+shift+g" /> | Group / ungroup. |
+| <Kbd keys="mod+shift+]" /> / <Kbd keys="mod+shift+[" /> | Bring to front / send to back. |
+| <Kbd keys="delete" /> | Delete the selection. |
+| <Kbd keys="mod+z" /> / <Kbd keys="mod+shift+z" /> | Undo / redo. |
+
+## Zoom and pan
+
+- Hold <Kbd keys="mod" /> and scroll to zoom, or use the zoom buttons in the toolbar (<Kbd keys="mod+=" /> and <Kbd keys="mod+-" />).
+- Hold <kbd class="kbd">Space</kbd> and drag to pan.
+- <Kbd keys="shift+1" /> zooms to fit everything, <Kbd keys="shift+2" /> zooms to fit your selection, and <Kbd keys="shift+0" /> resets to 100%.
+
+## Start from a template
+
+Click **Templates** in the toolbar and pick a starting point. Templates are grouped by category:
+
+| Category | Templates |
+| --- | --- |
+| **Diagrams** | Flowchart, Mind Map, Org Chart, Sequence, Timeline, Venn Diagram |
+| **Database** | ER Diagram, Table Schema, Data Flow |
+| **Architecture** | System Design, Component Tree, API Flow, Brainstorm |
+| **Design** | UI Frame, Button States, Input Form, Card Component |
+
+After you pick one, a side panel opens with extra building blocks for that category. Click any block to add it to your canvas. Examples: Process, Decision and Swim Lane for diagrams; Entity Table and Junction Table for databases; Service / API, Cache and Load Balancer for architecture; Button, Input Field and Toggle Switch for design. Use the arrow on the panel's edge to collapse or expand it.
+
+## Add notes to a diagram
+
+Select a shape (or several) and click **Add note** in the toolbar. A notes panel slides in with an **Edit** tab, where you write markdown, and a **Preview** tab. Toggle the panel any time with <Kbd keys="mod+/" />.
+
+For a sticky note, **Expand to note** turns its text into a full note. From then on, the sticky and the note are independent.
+
+## Where your canvas is saved
+
+The canvas saves itself about a second after each change. By default one canvas is shared across every vault and stored in a `.inkwell` folder in your home directory (`canvas.json`, with notes in `canvas-notes.md`).
+
+To keep a canvas inside a specific vault instead, go to **Settings → Features → Canvas storage** and click **Link to a vault…**. Click **Unlink** to go back to the shared canvas.
+
+<Callout type="note" title="TODO: verify">
+  Confirm what happens to existing drawings when you link or unlink a vault, the zoom limits, and whether the toolbar's zoom buttons show <Kbd keys="mod+=" /> or <Kbd keys="mod++" />. Also check the Sticky note tool's key (S) works on all platforms; the in-app shortcut sheet lists the other seven tools but not Sticky note.
+</Callout>

@@ -1,0 +1,138 @@
+---
+title: Troubleshooting and FAQ
+description: Quick answers to common questions, plus fixes for the problems people hit most often.
+group: Reference
+order: 21
+related: [vaults-and-files, external-changes, collaboration, github-sync]
+---
+
+## Frequently asked questions
+
+### Is inkwell free?
+
+Yes. inkwell is open source under the MIT license.
+
+<Callout type="note" title="TODO: verify">
+  Confirm pricing and whether there are any paid tiers before publishing this answer.
+</Callout>
+
+### Where are my notes stored?
+
+On your computer, as plain `.md` files in the vault folder you choose. See [Vaults and your files](/docs/vaults-and-files/).
+
+### Do I need an account?
+
+Not to write. An account is only needed for [real-time collaboration](/docs/collaboration/).
+
+### Can I use it with Obsidian?
+
+The vault format is Obsidian-compatible, so you can open the same folder in both.
+
+### Can I sync across devices?
+
+Yes. Use any folder-sync tool (iCloud, Dropbox, Syncthing, git). inkwell's vault watcher picks up external changes and warns you about conflicts. See [External changes and conflicts](/docs/external-changes/). For sharing with other people, use built-in [collaboration](/docs/collaboration/).
+
+### How many teams can I create?
+
+Each account can own up to 2 teams, with no limit on the teams you're invited to.
+
+### Which platforms are supported?
+
+macOS, Windows and Linux.
+
+### Can I export my notes?
+
+Anytime: Markdown, HTML or PDF. They're already just files, too. See [Sharing and exporting](/docs/sharing-and-exporting/).
+
+## Vaults and notes
+
+### A note I added outside inkwell isn't showing up
+
+- Check that it ends in `.md`. inkwell only shows markdown files.
+- Check that it isn't inside a folder whose name starts with a dot, or a code folder such as `node_modules`, `dist`, `build` or `vendor`. inkwell skips those. See [what counts as a note](/docs/vaults-and-files/#what-counts-as-a-note).
+- Make sure it's inside the vault folder you have open. Look under **Settings → Vaults → Active** to see which one that is.
+- If you add or edit files while inkwell is open, it normally picks them up within a second or so. If it doesn't, switch to another vault and back.
+
+### I see "Could not open vault"
+
+inkwell shows this when the folder can't be read. If it says the folder "may have moved or been deleted", the vault was renamed, moved or is on a drive that isn't connected. Reconnect it, or pick the new location with **Open Vault**, and remove the old entry from **Recent**.
+
+### My boards, attachments or note links are missing on another computer
+
+Those live in the vault's hidden `.inkwell` folder, not in the `.md` files. Make sure your sync tool includes hidden folders. See [The hidden `.inkwell` folder](/docs/vaults-and-files/#the-hidden-inkwell-folder).
+
+### My drawing isn't in this vault
+
+By default the canvas is shared by every vault and saved in your home folder. Link it to a vault under **Settings → Features → Canvas storage** if you want it to live with one. See [Canvas](/docs/canvas/#where-your-canvas-is-saved).
+
+### I can't find the Draw page
+
+Turn the canvas on under **Settings → Features → Canvas**.
+
+### I deleted a note by mistake
+
+inkwell has no trash, and deleting is permanent. Look in your computer's backups, in your sync service's version history, or in git if your vault is a repository.
+
+## Conflicts and syncing
+
+### A banner says a note "changed on disk"
+
+The note you have open was edited by another program while you were looking at it. Choose **Keep mine** to keep what's on screen, or **Reload from disk** to take the other version. See [External changes and conflicts](/docs/external-changes/).
+
+## GitHub
+
+### "GitHub token not configured. Go to Settings → GitHub."
+
+Add your token and username under **Settings → GitHub**, then click **Save**. See [GitHub sync](/docs/github-sync/#connect-your-github-account).
+
+### A push fails with a 403 error
+
+Your token can read but not write. Create a classic token with the `repo` scope, or a fine-grained token with **Contents → Read and write**, and save it again.
+
+### "Test connection" fails
+
+Check that the token hasn't expired or been revoked, and that you're online. Re-create the token if in doubt.
+
+## Collaboration
+
+### "Sign in first (Settings → Team)."
+
+Sharing or joining a vault needs an account. Sign in under **Settings → Team**, then try again.
+
+### "Pick an empty folder"
+
+When you join a shared vault, inkwell downloads it into a folder on your computer. That folder must be empty, so nothing already in it gets uploaded by mistake. Create a new empty folder and choose that.
+
+### Sign-in or syncing fails with "Load failed"
+
+This usually means your copy of inkwell wasn't built with the collaboration service's settings, which can happen with a build you made yourself. See [Build from source](/docs/build-from-source/#collaboration-settings). Otherwise check your internet connection.
+
+### I can't create another team
+
+Each account can own at most 2 teams. You can still be invited to as many as you like.
+
+### The status says "Offline" or "Sync error — retrying"
+
+You can keep writing. inkwell saves your edits on your computer and merges them as soon as the connection is back. See [Work offline](/docs/collaboration/#work-offline).
+
+## Shortcuts and windows
+
+### <Kbd keys="mod+n" /> doesn't open Quick Note
+
+The shortcut is system-wide, so another app may already be using it. Use the inkwell icon in the menu bar or system tray and choose **New Quick Note** instead. See [Quick capture](/docs/quick-capture/).
+
+### I closed the window, but inkwell is still running
+
+That's intentional, so quick capture keeps working. Use **Quit inkwell** from the tray icon to quit.
+
+### The glass options don't change anything
+
+**Glass sidebar** and **Glass body** are macOS-only.
+
+### The update button says "Update failed — click to retry"
+
+Click it to try again. If it keeps failing, download the latest installer manually.
+
+<Callout type="note" title="TODO: verify">
+  The "Load failed" and "Update failed" entries come from error strings in the source. Reproduce each on a clean install before publishing. Also add a macOS Gatekeeper / Windows SmartScreen note once the signing and notarisation status of the installers is known.
+</Callout>

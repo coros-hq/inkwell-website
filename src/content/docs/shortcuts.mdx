@@ -1,0 +1,89 @@
+---
+title: Keyboard shortcuts
+description: Every keyboard shortcut in inkwell in one searchable table, for macOS, Windows and Linux.
+group: Reference
+order: 20
+related: [settings, writing, canvas]
+---
+
+Shortcuts on this page follow the **⌘ Mac / Ctrl** switch at the top of the site, which starts out matching your computer. Use the box below to filter the table.
+
+<FilterTable label="Filter shortcuts">
+
+| Area | Action | Shortcut |
+| --- | --- | --- |
+| App | Search all notes | <Kbd keys="mod+k" /> |
+| App | Show or hide the sidebar | <Kbd keys="mod+b" /> |
+| App | Open a standalone `.md` file | <Kbd keys="mod+o" /> |
+| App | New note at the top level of the vault | <Kbd keys="mod+shift+n" /> |
+| App | New folder (inside the selected folder) | <Kbd keys="mod+shift+f" /> |
+| App | Quick capture, from any app (global) | <Kbd keys="mod+n" /> |
+| App | Delete the selected notes (asks first, when not typing) | <Kbd keys="delete" /> |
+| Search | Close the search window | <Kbd keys="esc" /> |
+| Sidebar | Rename a note or folder | Double-click it |
+| Sidebar | Confirm or cancel a rename | <Kbd keys="enter" /> / <Kbd keys="esc" /> |
+| Sidebar | Add or remove a note from the selection | <Kbd keys="mod" /> + click |
+| Sidebar | Select a range of notes | <Kbd keys="shift" /> + click |
+| Editor | Bold | <Kbd keys="mod+b" /> |
+| Editor | Italic | <Kbd keys="mod+i" /> |
+| Editor | Underline | <Kbd keys="mod+u" /> |
+| Editor | Strikethrough | <Kbd keys="mod+shift+s" /> |
+| Editor | Undo | <Kbd keys="mod+z" /> |
+| Editor | Redo | <Kbd keys="mod+shift+z" /> |
+| Editor | Open the `/` command menu | `/` on an empty line |
+| Editor | Mention a note | `@` then a title |
+| Editor | Choose from the `/` or `@` menu | <Kbd keys="enter" /> |
+| Editor | Open a mentioned note | <Kbd keys="mod" /> + click the mention |
+| Editor | Expand an abbreviation, like `:today` | Trigger character then keyword (default `:`) |
+| Find in note | Open the find bar | <Kbd keys="mod+f" /> |
+| Find in note | Next match | <Kbd keys="enter" /> or <Kbd keys="mod+f" /> |
+| Find in note | Previous match | <Kbd keys="shift+enter" /> |
+| Find in note | Close | <Kbd keys="esc" /> |
+| Boards | Add the task or column you're typing | <Kbd keys="enter" /> |
+| Boards | Cancel adding a task or column | <Kbd keys="esc" /> |
+| Boards | Close the task drawer | <Kbd keys="esc" /> |
+| Boards | Post a comment | <Kbd keys="mod+enter" /> |
+| Quick capture | Save the note | <Kbd keys="mod+enter" /> |
+| Quick capture | Close without saving | <Kbd keys="esc" /> |
+| Canvas | Select tool | <Kbd keys="v" /> |
+| Canvas | Pen tool | <Kbd keys="p" /> |
+| Canvas | Rectangle tool | <Kbd keys="r" /> |
+| Canvas | Ellipse tool | <Kbd keys="e" /> |
+| Canvas | Line tool | <Kbd keys="l" /> |
+| Canvas | Arrow tool | <Kbd keys="a" /> |
+| Canvas | Text tool | <Kbd keys="t" /> |
+| Canvas | Sticky note tool | <Kbd keys="s" /> |
+| Canvas | Back to the Select tool | <Kbd keys="esc" /> |
+| Canvas | Pan | <Kbd keys="space" /> + drag |
+| Canvas | Zoom | <Kbd keys="mod" /> + scroll |
+| Canvas | Zoom in / zoom out | <Kbd keys="mod+=" /> / <Kbd keys="mod+-" /> |
+| Canvas | Zoom to fit everything | <Kbd keys="shift+1" /> |
+| Canvas | Zoom to fit the selection | <Kbd keys="shift+2" /> |
+| Canvas | Reset zoom to 100% | <Kbd keys="shift+0" /> |
+| Canvas | Edit text in a shape or text box | Double-click it |
+| Canvas | Finish editing text | <Kbd keys="mod+enter" /> or <Kbd keys="esc" /> |
+| Canvas | Select everything | <Kbd keys="mod+a" /> |
+| Canvas | Add or remove from the selection | <Kbd keys="shift" /> + click |
+| Canvas | Delete the selection | <Kbd keys="delete" /> |
+| Canvas | Nudge by 1 px / 10 px | Arrow keys / <Kbd keys="shift" /> + arrow keys |
+| Canvas | Duplicate | <Kbd keys="mod+d" /> |
+| Canvas | Copy / cut / paste | <Kbd keys="mod+c" /> / <Kbd keys="mod+x" /> / <Kbd keys="mod+v" /> |
+| Canvas | Group / ungroup | <Kbd keys="mod+g" /> / <Kbd keys="mod+shift+g" /> |
+| Canvas | Bring to front / send to back | <Kbd keys="mod+shift+]" /> / <Kbd keys="mod+shift+[" /> |
+| Canvas | Undo / redo | <Kbd keys="mod+z" /> / <Kbd keys="mod+shift+z" /> |
+| Canvas | Show or hide the notes panel | <Kbd keys="mod+/" /> |
+| Canvas notes | Switch between Edit and Preview | <Kbd keys="mod+shift+p" /> |
+
+</FilterTable>
+
+## Customise the shortcuts
+
+Six of the shortcuts can be changed in **Settings → Shortcuts**: **Search**, **Toggle Sidebar**, **Open File**, **Find in Note**, **New Note** and **New Folder**. See [Settings reference](/docs/settings/#shortcuts). The rest are fixed.
+
+<Callout type="note">
+  <Kbd keys="mod+n" /> is the system-wide quick capture shortcut. That's why **New Note** inside the app uses <Kbd keys="mod+shift+n" /> instead.
+</Callout>
+
+<Callout type="note" title="TODO: verify">
+  This table was assembled by reading the keyboard handlers in the source. Spot-check a few on Windows and Linux, particularly <Kbd keys="mod+=" /> and <Kbd keys="mod+-" /> for canvas zoom and whether Vim mode changes any of them. When Vim mode is on, its own key bindings also apply in the editor.
+</Callout>

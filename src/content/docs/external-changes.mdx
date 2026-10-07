@@ -1,0 +1,55 @@
+---
+title: External changes and conflicts
+description: How inkwell notices edits made outside the app, what the conflict banner means, and a good setup for syncing across devices.
+group: Share
+order: 17
+related: [vaults-and-files, collaboration, troubleshooting]
+---
+
+Because your notes are ordinary files, other tools can change them: a sync service, `git pull`, or another editor. inkwell keeps an eye on your vault and updates itself.
+
+## What inkwell watches for
+
+While a vault is open, inkwell watches its folder for changes it didn't make itself. That covers:
+
+- Cloud-sync tools such as iCloud Drive, Dropbox and Syncthing.
+- Version control, for example a `git pull`.
+- A note you edited in another app, like Obsidian or a plain text editor.
+
+When something changes, inkwell re-reads the vault in the background. New notes appear, deleted ones disappear, and edited ones update, without resetting your selection or the note you're writing. The watcher waits about half a second so a burst of changes is handled together, and it ignores inkwell's own saves and `.git`.
+
+## When the open note changes on disk
+
+Most changes are applied silently. The exception is the note you currently have open, because replacing text under your cursor would be surprising. If it changes on disk while open, a banner appears at the bottom of the window:
+
+> **"Note title" changed on disk**
+> It was edited outside inkwell while open here. Keep your version, or reload the one on disk?
+
+<Screenshot
+  alt="The conflict banner at the bottom of the window with Reload from disk and Keep mine buttons"
+  caption="Capture the banner over an open note. Edit the same file in another editor to trigger it."
+/>
+
+Choose one:
+
+| Button | What happens |
+| --- | --- |
+| **Keep mine** | Your version stays. Nothing you typed is lost. |
+| **Reload from disk** | The note switches to the version on disk. |
+
+The banner doesn't block anything, so you can keep working while you decide.
+
+## A good multi-device setup
+
+1. Put your vault in a folder that your sync tool keeps up to date (iCloud Drive, Dropbox, Syncthing or a git repository).
+2. Include the whole folder, including the hidden `.inkwell` folder. It holds boards, attachment lists and note links. See [Vaults and your files](/docs/vaults-and-files/#the-hidden-inkwell-folder).
+3. Open the same vault on each device.
+4. Try not to edit the same note on two devices at the same moment. If you do, expect the conflict banner and pick the version you want.
+
+<Callout type="tip">
+  Want several people typing in the same note at once? Use [real-time collaboration](/docs/collaboration/) instead of a folder-sync tool. It merges edits character by character, so there are no conflicts to resolve.
+</Callout>
+
+<Callout type="note" title="TODO: verify">
+  Confirm what **Keep mine** writes back to disk (the in-memory version, immediately), and whether iCloud's placeholder "conflicted copy" files show up as extra notes.
+</Callout>

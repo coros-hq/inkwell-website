@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import { themeCss } from '../lib/themes';
+
+interface Props {
+	title?: string;
+	description?: string;
+	/** Lenis + GSAP entrance/scroll animations (landing page only). */
+	animate?: boolean;
+	canonical?: string;
+}
+
+const {
+	title = 'Inkwell – Write freely. Own everything.',
+	description = 'Inkwell is a focused, beautiful markdown note-taking app for your desktop. Plain .md files in a folder you control: no lock-in, no noise, no account required.',
+	animate = true,
+	canonical,
+} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		{canonical && <link rel="canonical" href={canonical} />}
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		{canonical && <meta property="og:url" content={canonical} />}
+		<slot name="head" />
+		<title>{title}</title>
+		<style is:inline set:html={themeCss()} />
+		<script is:inline define:vars={{ animate }}>
+			try {
+				const t = localStorage.getItem('inkwell-theme-v2');
+				if (t && t !== 'graphite' && t !== 'default') document.documentElement.dataset.theme = t;
+			} catch {}
+			if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+			// Shortcut style for docs: ⌘ on macOS, Ctrl elsewhere (visitor can override).
+			try {
+				const os = localStorage.getItem('inkwell-os');
+				document.documentElement.dataset.os = os === 'mac' || os === 'other' ? os : /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent) ? 'mac' : 'other';
+			} catch {}
+		</script>
+	</head>
+	<body>
+		<slot />
+		{animate && <script>import '../scripts/animations';</script>}
+	</body>
+</html>

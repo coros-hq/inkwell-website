@@ -1,0 +1,253 @@
+---
+import { Image } from 'astro:assets';
+import Layout from './Layout.astro';
+import Footer from '../components/Footer.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import DocsSearch from '../components/docs/DocsSearch.astro';
+import logo from '../assets/logo.svg';
+import '../styles/docs.css';
+import { getDocs, getDocsNav, docUrl, type DocEntry } from '../lib/docs';
+
+interface Props {
+	title: string;
+	description: string;
+	/** Current entry; omitted on the docs index. */
+	entry?: DocEntry;
+	headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, entry, headings = [] } = Astro.props;
+const nav = await getDocsNav();
+const all = await getDocs();
+const index = entry ? all.findIndex((d) => d.id === entry.id) : -1;
+const prev = index > 0 ? all[index - 1] : undefined;
+const next = index >= 0 && index < all.length - 1 ? all[index + 1] : undefined;
+const related = entry ? entry.data.related.map((id) => all.find((d) => d.id === id)).filter((d): d is DocEntry => !!d) : [];
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const canonical = new URL(Astro.url.pathname, site).href;
+const pageTitle = entry ? `${title} – inkwell docs` : 'inkwell docs';
+
+const jsonLd = entry
+	? [
+			{
+				'@context': 'https://schema.org',
+				'@type': 'TechArticle',
+				headline: title,
+				description,
+				url: canonical,
+				inLanguage: 'en',
+				articleSection: entry.data.group,
+				isPartOf: { '@type': 'WebSite', name: 'inkwell docs', url: new URL('/docs/', site).href },
+				publisher: { '@type': 'Organization', name: 'inkwell' },
+			},
+			{
+				'@context': 'https://schema.org',
+				'@type': 'BreadcrumbList',
+				itemListElement: [
+					{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', site).href },
+					{ '@type': 'ListItem', position: 2, name: 'Docs', item: new URL('/docs/', site).href },
+					{ '@type': 'ListItem', position: 3, name: title, item: canonical },
+				],
+			},
+		]
+	: [];
+---
+
+<Layout title={pageTitle} description={description} canonical={canonical} animate={false}>
+	{jsonLd.map((d) => <script type="application/ld+json" slot="head" set:html={JSON.stringify(d)} />)}
+
+	<header class="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur">
+		<div class="mx-auto flex h-14 max-w-[90rem] items-center gap-3 px-[clamp(1rem,3vw,2rem)]">
+			<a href="/" class="flex items-center gap-2.5 text-foreground no-underline" aria-label="Inkwell home">
+				<Image src={logo} alt="" width={24} height={24} />
+				<span class="text-lg">Inkwell</span>
+			</a>
+			<a href="/docs/" class="rounded-md bg-tag-bg px-2 py-0.5 text-sm font-medium text-tag-text no-underline">Docs</a>
+			<div class="ml-auto flex items-center gap-2 text-foreground">
+				<DocsSearch />
+				<div class="hidden items-center rounded-lg border border-border p-0.5 text-sm sm:flex" role="group" aria-label="Shortcut style">
+					<button type="button" data-os-set="mac" aria-pressed="false" class="cursor-pointer rounded-md px-2 py-1 text-muted-foreground aria-pressed:bg-active aria-pressed:text-foreground">⌘ Mac</button>
+					<button type="button" data-os-set="other" aria-pressed="false" class="cursor-pointer rounded-md px-2 py-1 text-muted-foreground aria-pressed:bg-active aria-pressed:text-foreground">Ctrl</button>
+				</div>
+				<ThemeSwitcher />
+			</div>
+		</div>
+	</header>
+
+	<div class="mx-auto max-w-[90rem] px-[clamp(1rem,3vw,2rem)] lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[15rem_minmax(0,1fr)_13rem]">
+		<!-- Sidebar (desktop) / collapsible menu (mobile) -->
+		<aside class="lg:sticky lg:top-14 lg:h-[calc(100vh-3.5rem)] lg:overflow-y-auto lg:py-8 lg:pr-2">
+			<details class="group border-b border-border py-3 lg:hidden">
+				<summary class="flex cursor-pointer list-none items-center justify-between font-medium text-foreground [&::-webkit-details-marker]:hidden">
+					Browse the docs
+					<span class="text-muted-foreground transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
+				</summary>
+				<nav aria-label="Docs" class="mt-3 pb-2">
+					{nav.map((g) => (
+						<div class="mb-4">
+							<p class="mb-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">{g.group}</p>
+							<ul>
+								{g.items.map((d) => (
+									<li>
+										<a href={docUrl(d.id)} aria-current={entry?.id === d.id ? 'page' : undefined} class="block rounded-md px-2 py-1.5 text-foreground no-underline aria-[current=page]:bg-active aria-[current=page]:font-medium">
+											{d.data.title}
+										</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					))}
+				</nav>
+			</details>
+
+			<nav aria-label="Docs" class="hidden lg:block">
+				{nav.map((g) => (
+					<div class="mb-6">
+						<p class="mb-1.5 px-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">{g.group}</p>
+						<ul>
+							{g.items.map((d) => (
+								<li>
+									<a href={docUrl(d.id)} aria-current={entry?.id === d.id ? 'page' : undefined} class="block rounded-md px-2 py-1.5 text-[0.95rem] text-muted-foreground no-underline transition hover:bg-muted hover:text-foreground aria-[current=page]:bg-active aria-[current=page]:font-medium aria-[current=page]:text-foreground">
+										{d.data.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</nav>
+		</aside>
+
+		<main class="min-w-0 py-8 lg:py-10" id="docs-main">
+			{entry && (
+				<nav aria-label="Breadcrumb" class="mb-4 text-sm text-muted-foreground">
+					<ol class="flex flex-wrap items-center gap-1.5">
+						<li><a href="/" class="text-muted-foreground no-underline hover:text-foreground">Home</a></li>
+						<li aria-hidden="true">/</li>
+						<li><a href="/docs/" class="text-muted-foreground no-underline hover:text-foreground">Docs</a></li>
+						<li aria-hidden="true">/</li>
+						<li>{entry.data.group}</li>
+						<li aria-hidden="true">/</li>
+						<li aria-current="page" class="text-foreground">{title}</li>
+					</ol>
+				</nav>
+			)}
+
+			<article class="max-w-3xl">
+				<h1 class="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">{title}</h1>
+				{entry && <p class="mt-3 text-xl leading-snug font-light text-muted-foreground">{description}</p>}
+				<div class="docs-prose mt-8">
+					<slot />
+				</div>
+
+				{related.length > 0 && (
+					<section class="mt-12 rounded-2xl border border-border bg-surface p-5" aria-labelledby="related-title">
+						<h2 id="related-title" class="text-sm font-semibold tracking-wide text-muted-foreground uppercase">Related</h2>
+						<ul class="mt-2 grid gap-1 sm:grid-cols-2">
+							{related.map((r) => (
+								<li><a class="text-tag-text" href={docUrl(r.id)}>{r.data.title}</a></li>
+							))}
+						</ul>
+					</section>
+				)}
+
+				{entry && (prev || next) && (
+					<nav aria-label="Previous and next pages" class="mt-10 grid gap-3 sm:grid-cols-2">
+						{prev ? (
+							<a href={docUrl(prev.id)} class="rounded-xl border border-border p-4 no-underline transition hover:border-accent">
+								<span class="block text-sm text-muted-foreground">← Previous</span>
+								<span class="block font-medium text-foreground">{prev.data.title}</span>
+							</a>
+						) : <span />}
+						{next && (
+							<a href={docUrl(next.id)} class="rounded-xl border border-border p-4 text-right no-underline transition hover:border-accent sm:col-start-2">
+								<span class="block text-sm text-muted-foreground">Next →</span>
+								<span class="block font-medium text-foreground">{next.data.title}</span>
+							</a>
+						)}
+					</nav>
+				)}
+			</article>
+		</main>
+
+		<!-- On this page -->
+		{toc.length > 0 && (
+			<aside class="hidden xl:sticky xl:top-14 xl:block xl:h-[calc(100vh-3.5rem)] xl:overflow-y-auto xl:py-10">
+				<nav aria-label="On this page">
+					<p class="mb-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">On this page</p>
+					<ul class="border-l border-border" data-toc>
+						{toc.map((h) => (
+							<li>
+								<a href={`#${h.slug}`} data-toc-link class={`-ml-px block border-l border-transparent py-1 text-sm text-muted-foreground no-underline hover:text-foreground aria-[current=true]:border-accent aria-[current=true]:text-foreground ${h.depth === 3 ? 'pl-7' : 'pl-4'}`}>
+									{h.text}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			</aside>
+		)}
+	</div>
+
+	<Footer />
+
+	<script>
+		// Shortcut style toggle (⌘ vs Ctrl)
+		const root = document.documentElement;
+		const buttons = document.querySelectorAll<HTMLButtonElement>('[data-os-set]');
+		const paint = () => buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.osSet === root.dataset.os)));
+		buttons.forEach((b) =>
+			b.addEventListener('click', () => {
+				root.dataset.os = b.dataset.osSet;
+				try {
+					localStorage.setItem('inkwell-os', b.dataset.osSet!);
+				} catch {}
+				paint();
+			}),
+		);
+		paint();
+
+		// Heading anchors + code copy buttons
+		document.querySelectorAll<HTMLElement>('.docs-prose :is(h2, h3)[id]').forEach((h) => {
+			const a = document.createElement('a');
+			a.className = 'anchor';
+			a.href = `#${h.id}`;
+			a.textContent = '#';
+			a.setAttribute('aria-label', 'Link to this section');
+			h.append(a);
+		});
+		document.querySelectorAll<HTMLPreElement>('.docs-prose pre').forEach((pre) => {
+			const btn = document.createElement('button');
+			btn.type = 'button';
+			btn.className = 'code-copy';
+			btn.textContent = 'Copy';
+			btn.addEventListener('click', async () => {
+				try {
+					await navigator.clipboard.writeText(pre.querySelector('code')?.innerText ?? pre.innerText);
+					btn.textContent = 'Copied';
+				} catch {
+					btn.textContent = 'Press ⌘/Ctrl+C';
+				}
+				setTimeout(() => (btn.textContent = 'Copy'), 1500);
+			});
+			pre.append(btn);
+		});
+
+		// "On this page" scroll-spy
+		const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+		if (links.length) {
+			const targets = links.map((l) => document.getElementById(l.hash.slice(1))).filter((e): e is HTMLElement => !!e);
+			const spy = new IntersectionObserver(
+				(entries) => {
+					const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+					if (!visible) return;
+					links.forEach((l) => l.setAttribute('aria-current', String(l.hash === `#${visible.target.id}`)));
+				},
+				{ rootMargin: '-80px 0px -70% 0px' },
+			);
+			targets.forEach((t) => spy.observe(t));
+		}
+	</script>
+</Layout>

@@ -1,0 +1,91 @@
+---
+title: Boards and tasks
+description: Plan work on Kanban boards with columns, cards, due dates, subtasks and comments, then drop a live board or task into any note.
+group: Write
+order: 7
+related: [writing, collaboration, tables]
+---
+
+Boards give you a Kanban view of your work. They live alongside your notes, and you can embed any board or task inside a note.
+
+## Open the Board view
+
+Click **Board** under **Quick Access** in the sidebar. The first time, you'll see **No boards yet**.
+
+## Create a board
+
+1. Click **New board**.
+2. Type a **Board name** and click **Create**.
+
+A new board starts with four columns: **To Do**, **In Progress**, **In Review** and **Done**.
+
+Use the board name at the top (with the small arrow) to switch between boards or to create another one. The top bar also shows how many tasks the board has.
+
+<Screenshot
+  alt="A Kanban board with four columns and several task cards"
+  caption="Capture a board with tasks in every column, including cards that show a priority dot, tags, a due date and a subtask progress bar."
+/>
+
+## Work with columns
+
+- Click **Add column** and type a **Column name…** to add one.
+- Right-click a column to **Rename column** or **Delete column**.
+- Drag a column by its header to reorder it.
+
+## Add and move tasks
+
+1. At the bottom of a column, click **Add task**.
+2. Type a **Task title…** and press <Kbd keys="enter" /> (or click **Add**). Press <Kbd keys="esc" /> to cancel.
+3. Drag a card to another column, or to a new position in the same one.
+
+Each card shows a coloured dot for its priority (red for high, amber for medium, green for low), its tags, the assignee, the due date, and a small progress bar when it has subtasks.
+
+## Edit a task
+
+Click a card to open the task drawer. From there you can:
+
+| Field | What you can do |
+| --- | --- |
+| **Title** | Click the title to rename it. |
+| **Status** | Pick the column the task belongs to. |
+| **Priority** | Choose **High**, **Medium** or **Low**. New tasks start as Medium. |
+| **Assignee** | Type a name. It's free text, so you can use anyone's name. |
+| **Due Date** | Pick a date, or leave it as **No date**. |
+| **Details** | Write notes about the task in markdown. `/` commands work here, and `@` links to a note. |
+| **Subtasks** | Click **Add a subtask…** and tick them off as you go. |
+| **Tags** | Type a **tag name…** to add one; remove it with the small button on the tag. |
+| **Comments** | Write under **Leave a comment…**. |
+
+Close the drawer with <Kbd keys="esc" /> or the close button. To delete a task, use the trash button in the drawer and confirm **Delete task**.
+
+To delete a whole board, click the trash button in the top bar and confirm **Delete board**. This permanently deletes the board and all of its tasks.
+
+## Put a board or task inside a note
+
+1. In the editor, type `/board` or `/task`. You can also click **Insert board or task** in the floating toolbar.
+2. In **Insert board or task**, choose **Board** or **Task** at the top, then search for the one you want.
+3. Click it.
+
+By default a board appears as a live Kanban view and a task as a live card. They always show the latest state, so there's nothing to update by hand. Tick **Insert as inline link instead of an embedded board** (or **a task card**) if you'd rather get a simple link.
+
+Click **Open board** on an embedded board to jump to it in the Board view. Use **Remove from note** to take an embed out of the note; this doesn't delete the board or task.
+
+Under the hood an embed is a short code block holding the id:
+
+````markdown
+```board
+board-1234567890
+```
+````
+
+<Callout type="note">
+  If you delete a board or task that's embedded in a note, the note shows "This board" or "This task" as missing, with a **Remove from note** button.
+</Callout>
+
+## Where boards are stored
+
+Boards and tasks are saved in the vault's hidden `.inkwell` folder, not in your `.md` files. See [Vaults and your files](/docs/vaults-and-files/#the-hidden-inkwell-folder). In a [shared vault](/docs/collaboration/), boards are shared with your team.
+
+<Callout type="note" title="TODO: verify">
+  Confirm that boards and tasks are included in real-time collaboration for shared vaults, and the exact wording shown for a deleted board or task embed.
+</Callout>

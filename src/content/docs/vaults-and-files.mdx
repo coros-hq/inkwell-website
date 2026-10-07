@@ -1,0 +1,111 @@
+---
+title: Vaults and your files
+description: How inkwell stores notes as plain markdown files, and what lives in the hidden .inkwell folder.
+group: Start
+order: 2
+related: [getting-started, external-changes, troubleshooting]
+---
+
+A vault is just a folder on your computer. Inside it, every note is an ordinary `.md` file. There's no database and no export step, so you can back the folder up, sync it, or open it in another editor whenever you like.
+
+## What counts as a note
+
+inkwell reads every `.md` file in your vault, including files in subfolders. Folders map one-to-one to folders on disk, so moving a note into a folder in inkwell moves the file on disk too.
+
+A few things are left out on purpose:
+
+- Folders whose name starts with a dot, such as `.git` or `.inkwell`.
+- Common code and build folders, so a vault inside a project stays fast: `node_modules`, `dist`, `build`, `out`, `target`, `venv`, `__pycache__`, `vendor` and similar.
+- Files that aren't `.md`.
+
+## The note file format
+
+Each note starts with a small block of YAML frontmatter that inkwell manages for you:
+
+```yaml
+---
+id: note-1234567890
+created: 2026-01-15T10:30:00.000Z
+updated: 2026-01-15T11:00:00.000Z
+pinned: false
+tags: [project, ideas]
+---
+
+# Note title
+
+Your writing starts here.
+```
+
+| Field | What it's for |
+| --- | --- |
+| `id` | A stable identifier inkwell uses to track the note. |
+| `created` | When the note was created. |
+| `updated` | When it was last edited. |
+| `pinned` | `true` if the note is pinned to the top of the sidebar. |
+| `tags` | A list of tags, written as `[one, two]`, or `[]` when empty. |
+
+You don't have to write frontmatter yourself. If you drop a plain markdown file into the vault with no frontmatter, inkwell still opens it and adds the block the next time the note is saved.
+
+<Callout type="note">
+  The note's *title* is not in the frontmatter. inkwell uses the first `# Heading` in the file, or the file name if there isn't one. Renaming a note updates that heading and renames the file to match (for example, "Weekly Plan" becomes `weekly-plan.md`).
+</Callout>
+
+<Callout type="note" title="TODO: verify">
+  There's no tag editor in the interface today. Tags live in the frontmatter and are included in <a href="/docs/search/">search</a>. Confirm whether a tag editor is planned before describing how to add tags in-app.
+</Callout>
+
+## Using inkwell with Obsidian
+
+The vault format is compatible with Obsidian. You can point both apps at the same folder. inkwell understands Obsidian's `![[filename]]` embeds and finds the file anywhere in the vault.
+
+Two things to keep in mind:
+
+- Some formatting is saved as inline HTML so the file stays plain text: <u>underline</u> uses `<u>`, and highlight and text colours use `<mark>` and `<span>` tags. Other editors may show those tags as raw text.
+- Task boards, note attachments and note links are stored in the `.inkwell` folder (below), not inside the `.md` files.
+
+## The hidden `.inkwell` folder
+
+inkwell keeps its own bookkeeping in a `.inkwell` folder inside the vault. It's safe to leave alone, and you should include it when you back up or sync a vault so you don't lose boards and attachments.
+
+| File | What's inside |
+| --- | --- |
+| `app.json` | Boards and tasks, plus each note's attachments, links, and the list of standalone files you've opened. |
+| `boards.json` | A copy of your boards, columns and tasks. |
+| `team.json` | Only present on [shared vaults](/docs/collaboration/). It ties the folder to the shared copy. |
+| `canvas.json`, `canvas-notes.md` | Your Draw canvas. Only here if you've linked the canvas to this vault. |
+
+<Callout type="warning" title="Canvas files are global by default">
+  Unless you link the canvas to a vault in **Settings → Features → Canvas storage**, your drawing is saved in a `.inkwell` folder in your home directory and is shared across every vault. See [Canvas](/docs/canvas/).
+</Callout>
+
+## Switch vaults
+
+You can have as many vaults as you want and switch at any time.
+
+1. Open **Settings** at the bottom of the sidebar.
+2. Go to **Vaults**.
+3. Under **Other vaults**, click **Switch** next to a recent vault, or choose **Open folder** or **New vault**.
+
+The vault you're in is shown under **Active**. Use the **×** on a recent vault to remove it from the list. That only removes it from the list; it doesn't delete the folder.
+
+If a folder was moved or deleted, inkwell tells you it couldn't open the vault.
+
+## Open a single file
+
+Want to edit a markdown file that lives outside your vault, like a project README? Click **Open file…** in the sidebar header (<Kbd keys="mod+o" />). The file appears under **Open Files** in the sidebar.
+
+inkwell edits these files as-is: it never adds frontmatter to them. Use **Remove from library** in the right-click menu to stop showing a file; it doesn't delete it from disk.
+
+## Moving from the old storage format
+
+Early versions of inkwell kept everything in one `inkwell.json` file. If you open a vault that still has one, inkwell converts it automatically:
+
+1. Each note becomes a `.md` file in the matching folder.
+2. Boards, tasks, attachments and links move into `.inkwell/app.json`.
+3. The old file is kept as `.inkwell/inkwell.json.bak`.
+
+Nothing for you to do. If the conversion ever fails, your original `inkwell.json` is left untouched.
+
+<Callout type="note" title="TODO: verify">
+  The last sentence assumes the migration only renames `inkwell.json` after everything else has been written. Re-check `migrateFromJson` in `src/lib/vault.ts` before publishing.
+</Callout>

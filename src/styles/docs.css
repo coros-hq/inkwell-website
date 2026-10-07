@@ -1,0 +1,185 @@
+/* Docs prose + code colours. Only theme tokens are used. */
+
+:root {
+	--astro-code-foreground: hsl(var(--foreground));
+	--astro-code-background: hsl(var(--code-bg));
+	--astro-code-token-constant: hsl(var(--tag-text));
+	--astro-code-token-string: color-mix(in oklab, hsl(var(--tag-text)) 65%, hsl(var(--foreground)));
+	--astro-code-token-comment: hsl(var(--muted-foreground));
+	--astro-code-token-keyword: hsl(var(--tag-text));
+	--astro-code-token-parameter: hsl(var(--foreground));
+	--astro-code-token-function: hsl(var(--foreground));
+	--astro-code-token-string-expression: color-mix(in oklab, hsl(var(--tag-text)) 65%, hsl(var(--foreground)));
+	--astro-code-token-punctuation: hsl(var(--muted-foreground));
+	--astro-code-token-link: hsl(var(--tag-text));
+}
+
+/* ⌘ vs Ctrl */
+html[data-os='mac'] [data-os='other'],
+html[data-os='other'] [data-os='mac'],
+html:not([data-os]) [data-os='mac'] {
+	display: none;
+}
+
+.kbd {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.1rem 0.45rem;
+	border: 1px solid hsl(var(--border-strong));
+	border-bottom-width: 2px;
+	border-radius: 0.375rem;
+	background: hsl(var(--surface));
+	color: hsl(var(--foreground));
+	font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	font-size: 0.8125em;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+.docs-prose {
+	color: hsl(var(--foreground));
+	font-size: 1.0625rem;
+	line-height: 1.7;
+	font-weight: 300;
+	overflow-wrap: break-word;
+}
+.docs-prose > * + * {
+	margin-top: 1.1rem;
+}
+.docs-prose :is(h2, h3):not(.not-prose *) {
+	position: relative;
+	font-weight: 600;
+	line-height: 1.25;
+	scroll-margin-top: 5rem;
+}
+.docs-prose h2:not(.not-prose *) {
+	margin-top: 2.75rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid hsl(var(--border));
+	font-size: 1.5rem;
+}
+.docs-prose h3:not(.not-prose *) {
+	margin-top: 2rem;
+	font-size: 1.2rem;
+}
+.docs-prose .anchor {
+	margin-left: 0.4rem;
+	color: hsl(var(--tertiary));
+	font-weight: 400;
+	text-decoration: none;
+	opacity: 0;
+	transition: opacity 0.15s;
+}
+.docs-prose :is(h2, h3):hover .anchor,
+.docs-prose .anchor:focus-visible {
+	opacity: 1;
+}
+.docs-prose a:not(.anchor):not(.not-prose *) {
+	color: hsl(var(--tag-text));
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+	text-underline-offset: 3px;
+}
+.docs-prose a:not(.anchor):not(.not-prose *):hover {
+	text-decoration-color: currentColor;
+}
+.docs-prose strong {
+	font-weight: 600;
+}
+.docs-prose :is(ul, ol):not(.not-prose *) {
+	padding-left: 1.5rem;
+}
+.docs-prose ul:not(.not-prose *) {
+	list-style: disc;
+}
+.docs-prose ol:not(.not-prose *) {
+	list-style: decimal;
+}
+.docs-prose li:not(.not-prose *) + li {
+	margin-top: 0.4rem;
+}
+.docs-prose li::marker {
+	color: hsl(var(--muted-foreground));
+}
+.docs-prose ol > li::marker {
+	font-weight: 600;
+	color: hsl(var(--tag-text));
+}
+.docs-prose :not(pre) > code {
+	padding: 0.1rem 0.35rem;
+	border-radius: 0.375rem;
+	background: hsl(var(--code-bg));
+	font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	font-size: 0.875em;
+}
+.docs-prose pre {
+	position: relative;
+	overflow-x: auto;
+	padding: 1rem 1.1rem;
+	border: 1px solid hsl(var(--border));
+	border-radius: 0.75rem;
+	font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+.docs-prose pre code {
+	background: none;
+	padding: 0;
+	font-size: inherit;
+}
+.docs-prose .code-copy {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	padding: 0.2rem 0.55rem;
+	border: 1px solid hsl(var(--border-strong));
+	border-radius: 0.375rem;
+	background: hsl(var(--card));
+	color: hsl(var(--muted-foreground));
+	font-family: inherit;
+	font-size: 0.75rem;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity 0.15s;
+}
+.docs-prose pre:hover .code-copy,
+.docs-prose .code-copy:focus-visible {
+	opacity: 1;
+}
+.docs-prose blockquote {
+	padding-left: 1rem;
+	border-left: 3px solid hsl(var(--border-strong));
+	color: hsl(var(--muted-foreground));
+}
+.docs-prose table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.95rem;
+}
+.docs-prose :is(th, td) {
+	padding: 0.55rem 0.75rem;
+	border-bottom: 1px solid hsl(var(--border));
+	text-align: left;
+	vertical-align: top;
+}
+.docs-prose th {
+	font-weight: 600;
+	color: hsl(var(--muted-foreground));
+	white-space: nowrap;
+}
+.docs-prose hr {
+	border: 0;
+	border-top: 1px solid hsl(var(--border));
+}
+.docs-prose img {
+	border-radius: 0.75rem;
+	border: 1px solid hsl(var(--border));
+}
+.docs-prose .not-prose :is(p, ul, li) {
+	margin: 0;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+	display: none;
+}

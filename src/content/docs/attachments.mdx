@@ -1,0 +1,76 @@
+---
+title: Attachments and media
+description: Add images, PDFs and other files to a note, embed them inline, and manage them from the media panel.
+group: Write
+order: 8
+related: [writing, vaults-and-files, sharing-and-exporting]
+---
+
+Keep the files a note depends on right next to it. inkwell copies attachments into your vault, so they travel with your notes.
+
+## Add a file to a note
+
+There are three ways, depending on what you're adding.
+
+**Paste an image.** Copy an image, click into the note and paste. inkwell saves it as a file in the `assets` folder of your vault and embeds it where your cursor is.
+
+**Use the toolbar.** The floating toolbar at the bottom of the editor has three buttons:
+
+| Button | What it does |
+| --- | --- |
+| **Insert image from URL** | Paste the address of an image on the web. It must point straight to an image, not to a webpage. |
+| **Upload image from computer** | Pick an image file. inkwell copies it into the vault's `attachments` folder. |
+| **Attach file or document (PDF, Word, etc.)** | Pick any file. It's copied into `attachments` too. |
+
+**Use the media panel.** Click the paperclip (**Media & attachments**) at the top-right of the note, then **Add file or document**.
+
+<Screenshot
+  alt="The media panel open next to a note, with an image, a PDF and a spreadsheet listed"
+  caption="Capture the media panel with one image, one video and one document so all three sections appear."
+/>
+
+When you pick a file, inkwell won't overwrite an existing one. A second `report.pdf` is saved as `report (1).pdf`.
+
+<Callout type="note">
+  The file picker offers **Images**, **Documents** (PDF, Word, text, markdown, CSV, Excel, PowerPoint), **Videos** and **All files**.
+</Callout>
+
+## Embed a file inline
+
+Attached files appear inside the note as an embed, which is a line like this:
+
+```markdown
+![[attachments/budget.pdf|budget.pdf|3300]]
+```
+
+The three parts, separated by `|`, are the file's path inside the vault, the name to display, and its size in bytes. inkwell draws this as a collapsible block in the editor, so images show as pictures and other files can be opened.
+
+If you use Obsidian, `![[filename]]` also works. inkwell finds a file of that name anywhere in your vault, so you don't need to type the folder.
+
+<Callout type="tip">
+  When you use the toolbar to upload or attach a file, inkwell puts the embed on its own line, even if the cursor was in the middle of a sentence.
+</Callout>
+
+## See everything attached to a note
+
+Click the paperclip at the top-right of the note to open the **Media** panel. Files are grouped under **Images**, **Video** and **Documents & Files**, each with its name and size.
+
+- Click a name, or the **Open with system app** icon, to open the file in your computer's default app.
+- Click **Remove attachment** (the bin icon) to remove it.
+
+<Callout type="warning" title="Removing deletes the file">
+  **Remove attachment** takes the file out of the note, deletes the file from the vault, and removes its embed line from the text. If you only want to hide it, delete the embed line in the editor instead.
+</Callout>
+
+## Where files are stored
+
+| Added by | Saved in |
+| --- | --- |
+| Pasting an image | `assets/` in your vault |
+| Upload or attach buttons, and the media panel | `attachments/` in your vault |
+
+Which files belong to which note is recorded in the vault's hidden `.inkwell/app.json`. If you sync your vault with another tool, include that folder so attachments stay connected to their notes.
+
+<Callout type="note" title="TODO: verify">
+  The Media panel's file-type groups come from the file extension (image, video, pdf, other). Confirm the full list of extensions treated as video, and how large files behave in a [shared vault](/docs/collaboration/).
+</Callout>

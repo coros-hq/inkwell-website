@@ -1,0 +1,71 @@
+---
+title: Math (LaTeX)
+description: Write inline and display equations with LaTeX, rendered live in the editor and in exports.
+group: Write
+order: 4
+related: [writing, sharing-and-exporting]
+---
+
+inkwell renders LaTeX with KaTeX, right where you type. The raw formula comes back whenever your cursor touches it, so it's always editable.
+
+## Write an inline formula
+
+Wrap the formula in single dollar signs:
+
+```markdown
+The famous equation $E = mc^2$ changed physics.
+```
+
+<MathExample tex="E = mc^2" />
+
+A few rules keep prices and formulas apart:
+
+- No space right after the opening `$` or right before the closing `$`.
+- The closing `$` can't be followed by a digit, so `It costs $5 and $10` stays as normal text.
+- Inline math stays on one line.
+
+## Write a display formula
+
+For a formula on its own line, use double dollar signs. It can run over several lines:
+
+```markdown
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+```
+
+<MathExample display tex="\int_0^1 x^2 \, dx = \frac{1}{3}" />
+
+## Use a math code block
+
+If a formula is long, or contains `$` characters, put it in a fenced block. inkwell accepts `math`, `latex`, `tex` and `katex` as the block's language:
+
+````markdown
+```math
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+```
+````
+
+<MathExample display tex="\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}" />
+
+## More examples to copy
+
+| Write this | Get this |
+| --- | --- |
+| `$\sqrt{a^2 + b^2}$` | the Pythagorean hypotenuse |
+| `$x_{i}^{2}$` | subscripts and superscripts |
+| `$\alpha + \beta = \gamma$` | Greek letters |
+| `$$\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$` | a 2×2 matrix |
+
+<MathExample display tex="\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+
+## Good to know
+
+- Math inside inline code or code blocks is never rendered, so you can show the dollar syntax itself.
+- A formula KaTeX can't read is shown as text instead of breaking the note.
+- Rendered math and its formatting carry over when you [export to HTML or PDF](/docs/sharing-and-exporting/).
+- Math works in Normal mode and in the Markdown-mode preview.
+
+<Callout type="note" title="TODO: verify">
+  Confirm that math in Normal mode also renders inside list items and blockquotes, and that exported PDFs embed the KaTeX fonts.
+</Callout>

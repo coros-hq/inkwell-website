@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import MobileMenu from "./MobileMenu.astro";
+import { navLinks } from "../lib/nav";
+import logo from "../assets/logo.svg";
+import heroBg from "../assets/hero/hero-bg.avif";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+import appMockup from "../assets/hero/app-mockup.png";
+---
+
+<section class="relative isolate z-10 overflow-x-clip text-white">
+  <div class="absolute inset-0 -z-20 overflow-clip" aria-hidden="true">
+    <div
+      class="absolute inset-x-0 -top-[10%] -bottom-[10%] bg-cover bg-center will-change-transform"
+      style={`background-image: url(${heroBg.src})`}
+      data-parallax="-12"
+    >
+      <!-- darkened accent tint keeps the white headline readable on every theme -->
+      <div class="absolute inset-0 bg-[color-mix(in_oklab,hsl(var(--accent))_25%,black)] opacity-60"></div>
+    </div>
+  </div>
+
+  <header
+    data-hero="nav"
+    class="relative z-20 mx-auto flex max-w-content items-center justify-between px-[clamp(1rem,4vw,2rem)] pt-6"
+  >
+    <a
+      class="flex items-center gap-3 text-inherit no-underline"
+      href="/"
+      aria-label="Inkwell home"
+    >
+      <Image class="" src={logo} alt="inkwell-logo" width={26} height={26} />
+      <span class="text-xl font-normal">Inkwell</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <nav class="mr-4 hidden md:block" aria-label="Main">
+        <ul class="flex items-center gap-8">
+          {navLinks.map((l) => (
+            <li>
+              <a
+                class="font-light text-white/90 no-underline transition hover:text-white"
+                href={l.href}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <ThemeSwitcher />
+      <MobileMenu />
+    </div>
+  </header>
+
+  <div class="mx-auto max-w-content lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12 lg:px-[clamp(1rem,4vw,2rem)] lg:pt-16 lg:pb-28">
+    <div class="mx-auto mt-[clamp(2.5rem,8vw,5rem)] max-w-2xl px-[clamp(1rem,4vw,2rem)] text-center lg:mx-0 lg:mt-0 lg:max-w-none lg:px-0 lg:text-left">
+      <h1 class="text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.1] lg:text-6xl font-semibold tracking-tight">
+        <span class="block overflow-hidden pb-[0.1em]">
+          <span class="block" data-hero="line">
+            Write freely.
+          </span>
+        </span>
+        <span class="block overflow-hidden pb-[0.1em]">
+          <span class="block" data-hero="line">
+            Own everything.
+          </span>
+        </span>
+      </h1>
+      <p
+        data-hero="lead"
+        class="mt-10 text-[clamp(1.125rem,3vw,1.5rem)] leading-normal font-light lg:mt-8 lg:text-xl"
+      >
+        inkwell is a focused, beautiful markdown note-taking app for your
+        desktop. Your notes are plain .md files in a folder you control: no
+        lock-in, no noise, no account required.
+      </p>
+    </div>
+
+    <div
+      data-hero="mockup"
+      class="relative mx-auto mt-[clamp(2rem,6vw,3.5rem)] max-w-160 px-[clamp(1rem,4vw,2rem)] pb-[clamp(2.5rem,8vw,4rem)] lg:mt-0 lg:max-w-none lg:px-0 lg:pb-0 lg:before:hidden before:absolute before:inset-x-1/2 before:bottom-0 before:-z-10 before:w-screen before:-translate-x-1/2 before:top-[calc(50%-5.5rem-clamp(2rem,6vw,4rem)/2)] before:bg-[linear-gradient(to_bottom,transparent,hsl(var(--surface))_4rem,hsl(var(--background))_4rem)] before:content-['']"
+    >
+      <Image
+        class="block aspect-[2702/1586] h-auto w-full rounded-lg shadow-[0_0.75rem_1.5rem_rgb(0_0_0/0.15)]"
+        src={appMockup}
+        width={1280}
+        alt="Inkwell showing a markdown note with a live preview"
+        loading="eager"
+        decoding="sync"
+      />
+    </div>
+  </div>
+</section>

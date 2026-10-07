@@ -1,0 +1,70 @@
+---
+title: GitHub sync
+description: Connect GitHub once, then push notes to a repository as .md files and pull the latest version back.
+group: Share
+order: 16
+related: [sharing-and-exporting, external-changes, troubleshooting]
+---
+
+GitHub sync is a simple way to keep a note, such as a project README or a docs page, in a repository. Push a note to publish it, and pull it to bring changes back.
+
+## Connect your GitHub account
+
+You'll need a personal access token (PAT) from GitHub. inkwell uses it to talk to GitHub on your behalf.
+
+1. In GitHub, create a token:
+   - **Classic token:** turn on the `repo` scope (recommended). The Settings page has a link that pre-fills this for you.
+   - **Fine-grained token:** under Repository permissions, set **Contents** to **Read and write**.
+2. In inkwell, open **Settings → GitHub**.
+3. Paste the token into **Personal Access Token**. Use the eye icon to show or hide it.
+4. Enter your GitHub username (or organisation) in **Default Owner / Username**.
+5. Click **Save**, then **Test connection**. A message like "Connected — 12 repos found." means it works, and your repositories are listed below.
+
+<Callout type="note">
+  Your token and username are stored on your own computer only. They're never written into your vault and never synced.
+</Callout>
+
+<Screenshot
+  alt="Settings, GitHub tab with the token field, owner field and a list of repositories"
+  caption="Capture the GitHub tab after a successful test, with the token hidden."
+/>
+
+## Push a note to GitHub
+
+1. Open the note and click **Sync with GitHub** (the branch icon) in the top bar.
+2. Under **Notes to push**, the current note is ticked. Tick more notes to push several at once. You can search them by title.
+3. Pick a repository from the list (private ones are marked).
+4. Choose where the file goes:
+   - **One note:** edit the **File path in repo**. It defaults to `docs/<note-title>.md`.
+   - **Several notes:** edit the **Folder prefix in repo** (default `docs/`). Each note is saved as `<prefix>/<note-title>.md`.
+5. Optionally write a **Commit message**. If you don't, inkwell uses `docs: sync "Note title" from inkwell`, or `docs: sync N notes from inkwell` for several.
+6. Click **Push note** (or **Push N notes**).
+
+When it finishes, each note is marked as done with a link to the file on GitHub. If it fails, you'll see why next to that note.
+
+If the file already exists in the repository, inkwell updates it. Otherwise it creates it.
+
+## Pull the latest version
+
+To bring a file back into a note:
+
+1. Open the **Sync with GitHub** window for the note.
+2. Make sure only that note is ticked, the repository is selected, and the **File path in repo** points at the file.
+3. Click **Pull from GitHub** and confirm the prompt: *Replace "Note title" with the version from owner/repo/path?*
+
+The note's text is replaced with the file from GitHub. Pulling works one note at a time.
+
+<Callout type="warning" title="Push and pull overwrite">
+  inkwell doesn't merge. Pushing replaces the file in the repository with your note, and pulling replaces your note with the repository's file. If both changed, the one you move last wins. Pull first if someone else may have edited the file.
+</Callout>
+
+## Good to know
+
+- Only the note's text is pushed. Images and other attachments aren't uploaded.
+- inkwell lists your own repositories (the 50 most recently updated).
+- Pushes go to each repository's default branch.
+- If a push fails with a 403 error, your token doesn't have write access. Recreate it with the `repo` scope or **Contents → Read and write**.
+
+<Callout type="note" title="TODO: verify">
+  Confirm that attachments and embedded images are not uploaded, that pushes always use the default branch, and whether organisation repositories appear in the list (it queries repositories you own). Also decide whether the git-based "vault sync" described in `git-sync-feature-design.md` should be documented. Its settings tab isn't reachable in the app today.
+</Callout>

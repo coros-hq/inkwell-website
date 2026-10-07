@@ -1,0 +1,24 @@
+---
+/** Placeholder for a real screenshot. Replace with <Image> once captured. */
+interface Props {
+	alt: string;
+	/** TODO note describing what should be captured. */
+	caption: string;
+}
+
+const { alt, caption } = Astro.props;
+---
+
+<figure class="not-prose my-8" data-screenshot-placeholder>
+	<div
+		role="img"
+		aria-label={alt}
+		class="grid aspect-video place-items-center rounded-xl border-2 border-dashed border-border-strong bg-surface p-6 text-center"
+	>
+		<div>
+			<p class="text-sm font-semibold tracking-wide text-muted-foreground uppercase">Screenshot placeholder</p>
+			<p class="mt-2 max-w-md text-base text-muted-foreground">{alt}</p>
+		</div>
+	</div>
+	<figcaption class="mt-2 text-sm text-muted-foreground">TODO: {caption}</figcaption>
+</figure>

@@ -1,0 +1,68 @@
+---
+import { ChevronDown } from "@lucide/astro";
+
+// TODO: confirm pricing / any paid tiers (first answer)
+const faqs = [
+  {
+    q: "Is inkwell free?",
+    a: "Yes. inkwell is open source under the MIT license.",
+  },
+  {
+    q: "Where are my notes stored?",
+    a: "On your computer, as plain .md files in the vault folder you choose.",
+  },
+  {
+    q: "Do I need an account?",
+    a: "Not to write. An account is only needed for real-time collaboration.",
+  },
+  {
+    q: "Can I use it with Obsidian?",
+    a: "The vault format is Obsidian-compatible, so you can open the same folder in both.",
+  },
+  {
+    q: "Can I sync across devices?",
+    a: "Yes. Use any folder-sync tool (iCloud, Dropbox, Syncthing, git); inkwell's vault watcher picks up external changes and warns you about conflicts. For sharing with other people, use built-in collaboration.",
+  },
+  {
+    q: "How many teams can I create?",
+    a: "Each account can own up to 2 teams, with no limit on teams you’re invited to.",
+  },
+  {
+    q: "How does the Claude integration work?",
+    a: "inkwell includes a local MCP server. Add it to your Claude Desktop config and Claude can list, read, search, create and update notes in your active vault.",
+  },
+  {
+    q: "Which platforms are supported?",
+    a: "macOS, Windows and Linux.",
+  },
+  {
+    q: "Can I export my notes?",
+    a: "Anytime: Markdown, HTML or PDF. They're already just files, too.",
+  },
+];
+---
+
+<section id="faq" class="px-[clamp(1rem,4vw,2rem)] pb-12 md:pb-20">
+  <div class="mx-auto max-w-2xl">
+    <h2 data-reveal class="text-center text-2xl font-semibold text-foreground md:text-3xl">
+      Frequently asked questions
+    </h2>
+
+    <div data-stagger class="mt-10 divide-y divide-border overflow-hidden md:mt-14">
+      {faqs.map((f) => (
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-lg font-semibold text-foreground marker:content-none hover:bg-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent md:px-8 [&::-webkit-details-marker]:hidden">
+            {f.q}
+            <ChevronDown
+              class="size-5 shrink-0 text-tertiary transition-transform duration-200 group-open:rotate-180"
+              aria-hidden="true"
+            />
+          </summary>
+          <p class="px-6 pb-6 text-base leading-relaxed font-light text-muted-foreground md:px-8 md:text-lg">
+            {f.a}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

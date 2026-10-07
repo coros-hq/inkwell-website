@@ -1,0 +1,19 @@
+---
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+/** Renders a TeX string at build time so docs examples show real output. */
+interface Props {
+	tex: string;
+	display?: boolean;
+	label?: string;
+}
+
+const { tex, display = false, label = 'Renders as' } = Astro.props;
+const html = katex.renderToString(tex, { displayMode: display, throwOnError: false, output: 'htmlAndMathml' });
+---
+
+<div class="not-prose my-4 flex flex-col gap-1 rounded-xl border border-border bg-surface px-4 py-3">
+	<span class="text-xs font-semibold tracking-wide text-muted-foreground uppercase">{label}</span>
+	<div class={display ? 'overflow-x-auto text-center' : ''} set:html={html} />
+</div>

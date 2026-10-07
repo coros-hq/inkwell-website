@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import freedom from '../assets/freedom.svg';
+---
+
+<section id="your-files" class="px-[clamp(1rem,4vw,2rem)] pb-12 md:pb-20">
+	<div class="mx-auto max-w-content text-center">
+		<h2 data-reveal class="text-2xl font-semibold text-foreground md:text-3xl">Your files, your rules</h2>
+		<div data-reveal class="mx-auto mt-4 max-w-xl text-lg leading-snug font-light text-muted-foreground md:text-xl">
+			<p class="font-normal text-muted-foreground">Plain text outlasts every app.</p>
+			<!-- TODO: the Figma copy has a gap after "small" — confirm the exact wording -->
+			<p class="mt-1">
+				inkwell stores notes as ordinary markdown with a small hidden config folder. The format is
+				Obsidian-compatible, so you can open the same vault in other tools whenever you like.
+			</p>
+		</div>
+		<Image
+			data-reveal="scale"
+			class="mx-auto mt-10 h-auto w-full max-w-sm md:mt-14 md:max-w-lg"
+			src={freedom}
+			alt="A folder of markdown notes next to a broken padlock"
+			width={300}
+			height={224}
+		/>
+	</div>
+</section>

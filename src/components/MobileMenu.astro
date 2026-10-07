@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import { Menu, X } from '@lucide/astro';
+import logo from '../assets/logo.svg';
+import { navLinks } from '../lib/nav';
+---
+
+<button
+	type="button"
+	class="grid size-10 cursor-pointer place-items-center rounded-full text-inherit transition hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:hidden"
+	aria-label="Open menu"
+	aria-haspopup="dialog"
+	aria-expanded="false"
+	aria-controls="mobile-menu"
+	data-menu-toggle
+>
+	<Menu size={30} aria-hidden="true" />
+</button>
+
+<div
+	id="mobile-menu"
+	role="dialog"
+	aria-modal="true"
+	aria-label="Menu"
+	data-menu-panel
+	class="invisible fixed inset-0 z-50 flex -translate-y-2 flex-col bg-background px-[clamp(1rem,4vw,2rem)] pt-6 pb-8 text-foreground opacity-0 transition-[opacity,translate,visibility] duration-300 data-open:visible data-open:translate-y-0 data-open:opacity-100"
+>
+	<div class="flex items-center justify-between">
+		<a class="flex items-center gap-3 text-inherit no-underline" href="/" aria-label="Inkwell home">
+			<Image src={logo} alt="" width={26} height={26} />
+			<span class="text-xl font-normal">Inkwell</span>
+		</a>
+		<button
+			type="button"
+			class="grid size-10 cursor-pointer place-items-center rounded-full transition hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+			aria-label="Close menu"
+			data-menu-close
+		>
+			<X size={28} aria-hidden="true" />
+		</button>
+	</div>
+
+	<nav class="mt-12 flex-1" aria-label="Main">
+		<ul class="divide-y divide-border border-y border-border">
+			{
+				navLinks.map((l) => (
+					<li>
+						<a
+							href={l.href}
+							class="flex items-center justify-between py-5 text-3xl font-semibold text-foreground no-underline transition hover:text-tag-text focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent"
+						>
+							{l.label}
+							<span class="text-xl text-tertiary" aria-hidden="true">→</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+
+	<a
+		href="#download"
+		class="rounded-full bg-accent px-8 py-4 text-center text-lg font-semibold text-accent-foreground no-underline transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+	>
+		Download inkwell
+	</a>
+</div>
+
+<script>
+	const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+	const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
+	if (toggle && panel) {
+		// Move out of the header: its animation transform would otherwise break `position: fixed`.
+		document.body.appendChild(panel);
+		const close = panel.querySelector<HTMLButtonElement>('[data-menu-close]')!;
+		const lenis = () => (window as any).__lenis;
+
+		const setOpen = (open: boolean, restoreFocus = true) => {
+			panel.toggleAttribute('data-open', open);
+			toggle.setAttribute('aria-expanded', String(open));
+			document.documentElement.style.overflow = open ? 'hidden' : '';
+			open ? lenis()?.stop() : lenis()?.start();
+			if (open) close.focus();
+			else if (restoreFocus) toggle.focus();
+		};
+
+		toggle.addEventListener('click', () => setOpen(true));
+		close.addEventListener('click', () => setOpen(false));
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && panel.hasAttribute('data-open')) setOpen(false);
+		});
+		// Capture phase so scrolling is re-enabled before the anchor handler runs.
+		panel.addEventListener(
+			'click',
+			(e) => {
+				if ((e.target as HTMLElement).closest('a[href^="#"]')) setOpen(false, false);
+			},
+			true,
+		);
+		// Leaving the mobile layout while open would strand the overlay.
+		matchMedia('(min-width: 768px)').addEventListener('change', (e) => e.matches && setOpen(false, false));
+	}
+</script>

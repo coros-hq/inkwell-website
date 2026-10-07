@@ -1,0 +1,19 @@
+---
+/** Platform-aware shortcut chip. Pass a combo like "mod+shift+n" (mod = ⌘ on macOS, Ctrl elsewhere). */
+interface Props {
+	keys: string;
+}
+
+const { keys } = Astro.props;
+const parts = keys.split('+');
+const key = parts[parts.length - 1];
+const mods = parts.slice(0, -1);
+const label = key.length === 1 ? key.toUpperCase() : key.charAt(0).toUpperCase() + key.slice(1);
+const mac = { mod: '⌘', shift: '⇧', alt: '⌥', ctrl: '⌃' };
+const other = { mod: 'Ctrl', shift: 'Shift', alt: 'Alt', ctrl: 'Ctrl' };
+const lone = parts.length === 1 && key in mac;
+const macText = lone ? mac[key as keyof typeof mac] : mods.map((m) => mac[m as keyof typeof mac] ?? m).join('') + label;
+const otherText = lone ? other[key as keyof typeof other] : [...mods.map((m) => other[m as keyof typeof other] ?? m), label].join('+');
+---
+
+<kbd class="kbd"><span data-os="mac">{macText}</span><span data-os="other">{otherText}</span></kbd>

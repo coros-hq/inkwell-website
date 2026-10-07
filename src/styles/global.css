@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/outfit';
+
+/* Colour tokens come from src/lib/themes.ts (injected in Layout as CSS variables). */
+@theme inline {
+	--font-sans: 'Outfit Variable', system-ui, sans-serif;
+	--container-content: 72rem;
+	--color-background: hsl(var(--background));
+	--color-foreground: hsl(var(--foreground));
+	--color-card: hsl(var(--card));
+	--color-card-foreground: hsl(var(--card-foreground));
+	--color-sidebar: hsl(var(--sidebar));
+	--color-panel: hsl(var(--panel));
+	--color-surface: hsl(var(--surface));
+	--color-active: hsl(var(--active));
+	--color-border: hsl(var(--border));
+	--color-border-strong: hsl(var(--border-strong));
+	--color-input: hsl(var(--input));
+	--color-accent: hsl(var(--accent));
+	--color-accent-foreground: hsl(var(--accent-foreground));
+	--color-muted: hsl(var(--muted));
+	--color-muted-foreground: hsl(var(--muted-foreground));
+	--color-tertiary: hsl(var(--tertiary));
+	--color-code-bg: hsl(var(--code-bg));
+	--color-tag-bg: hsl(var(--tag-bg));
+	--color-tag-text: hsl(var(--tag-text));
+	--color-destructive: hsl(var(--destructive));
+	--radius-theme: var(--radius);
+}
+
+@layer base {
+	body {
+		@apply bg-background font-sans text-foreground antialiased;
+	}
+}
+
+/* Initial states for scroll/entrance animations. Only applied when JS is on and motion is allowed. */
+html.motion [data-hero='nav'],
+html.motion [data-hero='lead'],
+html.motion [data-hero='mockup'],
+html.motion [data-hero='line'],
+html.motion [data-reveal],
+html.motion [data-stagger] > * {
+	opacity: 0;
+}
+
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
