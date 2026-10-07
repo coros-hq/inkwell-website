@@ -20,9 +20,13 @@ import appMockup from "../assets/hero/app-mockup.png";
     </div>
   </div>
 
+  <div
+    data-nav-bar
+    class="fixed inset-x-0 top-0 z-40 pb-4 pt-6 transition-[background-color,backdrop-filter,padding] duration-300 data-[scrolled]:bg-white/70 data-[scrolled]:text-neutral-900 data-[scrolled]:py-3 data-[scrolled]:shadow-sm data-[scrolled]:backdrop-blur-md"
+  >
   <header
     data-hero="nav"
-    class="relative z-20 mx-auto flex w-full max-w-content xl:max-w-[88rem] items-center justify-between px-[clamp(1rem,4vw,2rem)] pt-6"
+    class="relative z-20 mx-auto flex w-full max-w-content xl:max-w-[88rem] items-center justify-between px-[clamp(1rem,4vw,2rem)]"
   >
     <a
       class="flex items-center gap-3 text-inherit no-underline"
@@ -38,7 +42,7 @@ import appMockup from "../assets/hero/app-mockup.png";
           {navLinks.map((l) => (
             <li>
               <a
-                class="font-light text-white/90 no-underline transition hover:text-white"
+                class="font-light text-inherit no-underline opacity-90 transition hover:opacity-100"
                 href={l.href}
               >
                 {l.label}
@@ -51,8 +55,9 @@ import appMockup from "../assets/hero/app-mockup.png";
       <MobileMenu />
     </div>
   </header>
+  </div>
 
-  <div class="mx-auto flex w-full max-w-content flex-1 flex-col lg:grid lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] xl:max-w-[88rem] lg:items-center lg:gap-12 lg:px-[clamp(1rem,4vw,2rem)] lg:pt-16 lg:pb-28">
+  <div class="mx-auto flex w-full max-w-content flex-1 pt-20 flex-col lg:grid lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] xl:max-w-[88rem] lg:items-center lg:gap-12 lg:px-[clamp(1rem,4vw,2rem)] lg:pt-16 lg:pb-28">
     <div class="mx-auto mt-[clamp(2.5rem,8vw,5rem)] max-w-2xl px-[clamp(1rem,4vw,2rem)] text-center lg:mx-0 lg:mt-0 lg:max-w-none lg:px-0 lg:text-left">
       <h1 class="text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.1] lg:text-5xl xl:text-6xl font-semibold tracking-tight">
         <span class="block overflow-hidden pb-[0.1em]">
@@ -91,3 +96,10 @@ import appMockup from "../assets/hero/app-mockup.png";
     </div>
   </div>
 </section>
+
+<script>
+  const bar = document.querySelector<HTMLElement>("[data-nav-bar]");
+  const update = () => bar?.toggleAttribute("data-scrolled", window.scrollY > 24);
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+</script>
