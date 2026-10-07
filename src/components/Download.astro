@@ -1,14 +1,10 @@
 ---
-import mac from "../assets/download/mac.svg";
-import windows from "../assets/download/windows.svg";
-import linux from "../assets/download/linux.svg";
+import mac from '../assets/download/mac.svg';
+import windows from '../assets/download/windows.svg';
+import linux from '../assets/download/linux.svg';
+import { platforms, version, releasesUrl, releaseUrl } from '../lib/downloads';
 
-// TODO: point these at the real release assets
-const platforms = [
-  { name: "macOS", note: "Apple silicon & Intel", icon: mac, href: "#" },
-  { name: "Windows", note: "Windows 10 and later", icon: windows, href: "#" },
-  { name: "Linux", note: "AppImage & .deb", icon: linux, href: "#" },
-];
+const icons = { mac, windows, linux };
 ---
 
 <section id="download" class="px-[clamp(1rem,4vw,2rem)] pb-16 md:pb-24">
@@ -25,36 +21,96 @@ const platforms = [
         account, no sign-up.
       </p>
 
-      <ul data-stagger class="mx-auto mt-8 grid max-w-md gap-3">
+      <ul data-stagger data-download-list class="mx-auto mt-8 grid max-w-md gap-3 text-left">
         {platforms.map((p) => (
-          <li>
+          <li
+            data-platform={p.id}
+            class="rounded-2xl border border-border bg-card shadow-[0_2px_8px_rgb(0_0_0/0.05)] transition data-detected:border-accent data-detected:ring-2 data-detected:ring-accent/30"
+          >
             <a
-              href={p.href}
-              class="group flex items-center gap-4 rounded-2xl border border-border bg-card px-5 py-4 text-left no-underline shadow-[0_2px_8px_rgb(0_0_0/0.05)] transition hover:-translate-y-0.5 hover:border-accent hover:shadow-[0_6px_16px_rgb(0_0_0/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              href={p.primary.url}
+              class="group flex items-center gap-4 rounded-2xl px-5 py-4 no-underline transition hover:bg-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent"
+              aria-label={`Download inkwell ${version} for ${p.name} (${p.primary.file}, ${p.primary.size})`}
             >
               <span
                 class="size-7 shrink-0 bg-foreground"
-                style={`mask: url(${p.icon.src}) center / contain no-repeat; -webkit-mask: url(${p.icon.src}) center / contain no-repeat`}
+                style={`mask: url(${icons[p.icon].src}) center / contain no-repeat; -webkit-mask: url(${icons[p.icon].src}) center / contain no-repeat`}
                 aria-hidden="true"
               />
               <span class="flex-1">
-                <span class="block text-lg font-semibold text-foreground">
+                <span class="flex flex-wrap items-center gap-2 text-lg font-semibold text-foreground">
                   Download for {p.name}
+                  <span
+                    data-detected-badge
+                    hidden
+                    class="rounded-full bg-tag-bg px-2 py-0.5 text-xs font-medium text-tag-text"
+                  >
+                    Your system
+                  </span>
                 </span>
                 <span class="block text-sm font-light text-muted-foreground">
-                  {p.note}
+                  {p.note} · {p.primary.label} · {p.primary.size}
                 </span>
               </span>
               <span
                 class="text-xl text-tertiary transition group-hover:translate-x-1 group-hover:text-tag-text"
                 aria-hidden="true"
               >
-                →
+                ↓
               </span>
             </a>
+            {p.others.length > 0 && (
+              <p class="border-t border-border px-5 py-2.5 text-sm font-light text-muted-foreground">
+                Also available as
+                {p.others.map((o, i) => (
+                  <>
+                    {i > 0 && ' ·'}{' '}
+                    <a
+                      href={o.url}
+                      class="text-tag-text underline decoration-current/35 underline-offset-2 hover:decoration-current"
+                      aria-label={`Download inkwell ${version} for ${p.name} as ${o.label} (${o.size})`}
+                    >
+                      {o.label}
+                    </a>
+                  </>
+                ))}
+              </p>
+            )}
           </li>
         ))}
       </ul>
+
+      <p class="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm font-light text-muted-foreground">
+        <span>Version {version}</span>
+        <span aria-hidden="true">·</span>
+        <a class="text-tag-text underline decoration-current/35 underline-offset-2 hover:decoration-current" href={releaseUrl}>Release notes</a>
+        <span aria-hidden="true">·</span>
+        <a class="text-tag-text underline decoration-current/35 underline-offset-2 hover:decoration-current" href={releasesUrl}>All releases</a>
+      </p>
     </div>
   </div>
 </section>
+
+<script>
+  // Highlight the download that matches the visitor's operating system.
+  function detect(): 'mac' | 'windows' | 'linux' | null {
+    const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
+    const platform = nav.userAgentData?.platform ?? navigator.platform ?? '';
+    const ua = navigator.userAgent;
+    // iPhone, iPad and Android can't run the desktop app.
+    if (/iPhone|iPad|iPod|Android/i.test(ua)) return null;
+    if (/Mac/i.test(platform) || /Macintosh/i.test(ua)) return 'mac';
+    if (/Win/i.test(platform) || /Windows/i.test(ua)) return 'windows';
+    if (/Linux|X11/i.test(platform) || (/Linux/i.test(ua) && !/CrOS/i.test(ua))) return 'linux';
+    return null;
+  }
+
+  const os = detect();
+  if (os) {
+    const row = document.querySelector<HTMLElement>(`[data-download-list] [data-platform="${os}"]`);
+    if (row) {
+      row.setAttribute('data-detected', '');
+      row.querySelector<HTMLElement>('[data-detected-badge]')?.removeAttribute('hidden');
+    }
+  }
+</script>

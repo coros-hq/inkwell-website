@@ -6,6 +6,8 @@ order: 3
 related: [math, tables, charts, attachments, shortcuts]
 ---
 
+import editorModes from '../../assets/docs/editor-modes.png';
+
 inkwell's editor is built on CodeMirror 6. It reads and writes plain markdown, but looks like a finished document while you type.
 
 ## Choose Normal or Markdown mode
@@ -22,7 +24,8 @@ To switch, click the **Switch to Markdown mode** button (two columns icon) in th
 New notes open in Normal mode. To change that default, go to **Settings → Editor → Default note mode**.
 
 <Screenshot
-  alt="The same note in Normal mode and in Markdown mode"
+  src={editorModes}
+  alt="A note in Markdown mode, with the markdown source on the left and the rendered preview on the right"
   caption="Capture a note with a heading, a list and a table twice: once in Normal mode, once in Markdown mode with the divider visible."
 />
 

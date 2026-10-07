@@ -1,24 +1,46 @@
 ---
-/** Placeholder for a real screenshot. Replace with <Image> once captured. */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/** A docs screenshot. Without `src` it renders a dashed placeholder with a TODO caption. */
 interface Props {
 	alt: string;
-	/** TODO note describing what should be captured. */
+	/** TODO note describing what should be captured (placeholder only). */
 	caption: string;
+	src?: ImageMetadata;
+	/** Cap the width for tall or small captures, e.g. dialogs. */
+	size?: 'full' | 'md' | 'sm';
 }
 
-const { alt, caption } = Astro.props;
+const { alt, caption, src, size = 'full' } = Astro.props;
+const max = { full: 'max-w-full', md: 'max-w-xl', sm: 'max-w-md' }[size];
 ---
 
-<figure class="not-prose my-8" data-screenshot-placeholder>
-	<div
-		role="img"
-		aria-label={alt}
-		class="grid aspect-video place-items-center rounded-xl border-2 border-dashed border-border-strong bg-surface p-6 text-center"
-	>
-		<div>
-			<p class="text-sm font-semibold tracking-wide text-muted-foreground uppercase">Screenshot placeholder</p>
-			<p class="mt-2 max-w-md text-base text-muted-foreground">{alt}</p>
-		</div>
-	</div>
-	<figcaption class="mt-2 text-sm text-muted-foreground">TODO: {caption}</figcaption>
-</figure>
+{
+	src ? (
+		<figure class={`not-prose my-8 ${max}`}>
+			<Image
+				src={src}
+				alt={alt}
+				widths={[640, 1000, 1400]}
+				sizes="(min-width: 1280px) 768px, 100vw"
+				class="h-auto w-full rounded-xl border border-border shadow-[0_2px_8px_rgb(0_0_0/0.06)]"
+			/>
+			<figcaption class="mt-2 text-sm text-muted-foreground">{alt}</figcaption>
+		</figure>
+	) : (
+		<figure class="not-prose my-8" data-screenshot-placeholder>
+			<div
+				role="img"
+				aria-label={alt}
+				class="grid aspect-video place-items-center rounded-xl border-2 border-dashed border-border-strong bg-surface p-6 text-center"
+			>
+				<div>
+					<p class="text-sm font-semibold tracking-wide text-muted-foreground uppercase">Screenshot placeholder</p>
+					<p class="mt-2 max-w-md text-base text-muted-foreground">{alt}</p>
+				</div>
+			</div>
+			<figcaption class="mt-2 text-sm text-muted-foreground">TODO: {caption}</figcaption>
+		</figure>
+	)
+}

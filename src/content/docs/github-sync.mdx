@@ -6,6 +6,8 @@ order: 16
 related: [sharing-and-exporting, external-changes, troubleshooting]
 ---
 
+import githubTab from '../../assets/docs/github-sync.png';
+
 GitHub sync is a simple way to keep a note, such as a project README or a docs page, in a repository. Push a note to publish it, and pull it to bring changes back.
 
 ## Connect your GitHub account
@@ -24,11 +26,6 @@ You'll need a personal access token (PAT) from GitHub. inkwell uses it to talk t
   Your token and username are stored on your own computer only. They're never written into your vault and never synced.
 </Callout>
 
-<Screenshot
-  alt="Settings, GitHub tab with the token field, owner field and a list of repositories"
-  caption="Capture the GitHub tab after a successful test, with the token hidden."
-/>
-
 ## Push a note to GitHub
 
 1. Open the note and click **Sync with GitHub** (the branch icon) in the top bar.
@@ -39,6 +36,12 @@ You'll need a personal access token (PAT) from GitHub. inkwell uses it to talk t
    - **Several notes:** edit the **Folder prefix in repo** (default `docs/`). Each note is saved as `<prefix>/<note-title>.md`.
 5. Optionally write a **Commit message**. If you don't, inkwell uses `docs: sync "Note title" from inkwell`, or `docs: sync N notes from inkwell` for several.
 6. Click **Push note** (or **Push N notes**).
+
+<Screenshot
+  src={githubTab}
+  alt="The Sync with GitHub window: notes to push, repository, file path and commit message, with Push note and Pull from GitHub buttons"
+  caption="The Sync with GitHub window."
+/>
 
 When it finishes, each note is marked as done with a link to the file on GitHub. If it fails, you'll see why next to that note.
 

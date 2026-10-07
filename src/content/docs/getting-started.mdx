@@ -6,21 +6,19 @@ order: 1
 related: [vaults-and-files, writing, organising-notes]
 ---
 
+import welcomeNote from '../../assets/docs/welcome-vault-file.png';
+
 inkwell keeps your notes as ordinary markdown files in a folder you choose. This page takes you from install to your first note in a few minutes.
 
 ## Install inkwell
 
-inkwell runs on macOS, Windows and Linux. Download the installer for your system:
+inkwell runs on macOS, Windows and Linux. Download the installer for your system from the [latest release on GitHub](https://github.com/coros-hq/inkwell/releases/latest), or from the [download section](/#download) of the home page, which highlights the right one for your computer.
 
-| System | What you get |
+| System | Download |
 | --- | --- |
-| macOS | `.dmg` / `.app` |
-| Windows | `.exe` / `.msi` |
-| Linux | `.deb`, `.rpm` or `.AppImage` |
-
-<Callout type="note" title="TODO: verify">
-  The public download links aren't published yet. Link each row above to the real release asset once the first release is live.
-</Callout>
+| macOS (Apple silicon and Intel) | [`.dmg`](https://github.com/coros-hq/inkwell/releases/download/v1.0.0/inkwell_1.0.0_universal.dmg) |
+| Windows (64-bit) | [`.exe` installer](https://github.com/coros-hq/inkwell/releases/download/v1.0.0/inkwell_1.0.0_x64-setup.exe) or [`.msi`](https://github.com/coros-hq/inkwell/releases/download/v1.0.0/inkwell_1.0.0_x64_en-US.msi) |
+| Linux (x86_64) | [`.AppImage`](https://github.com/coros-hq/inkwell/releases/download/v1.0.0/inkwell_1.0.0_amd64.AppImage), [`.deb`](https://github.com/coros-hq/inkwell/releases/download/v1.0.0/inkwell_1.0.0_amd64.deb) or [`.rpm`](https://github.com/coros-hq/inkwell/releases/download/v1.0.0/inkwell-1.0.0-1.x86_64.rpm) |
 
 inkwell checks for new versions in the background. When one is available, an **Update available · vX.Y.Z** button appears at the bottom of the sidebar. Click it to download and install; the app restarts by itself.
 
@@ -30,11 +28,6 @@ On first launch inkwell asks you to **choose a folder to store your notes**. Tha
 
 1. **Open Vault** – pick a folder you already use. Every `.md` file inside it shows up as a note.
 2. **New Vault** – pick a folder to start fresh. inkwell adds a short **Welcome to inkwell** note in a `getting-started` folder so the vault isn't empty.
-
-<Screenshot
-  alt="The vault picker with Open Vault, New Vault and a Recent list"
-  caption="Capture the first-launch screen with at least one entry under Recent."
-/>
 
 The picker also lists your **Recent** vaults, with when you last opened each one. Click one to jump back in. After your first launch, inkwell reopens the vault you used last.
 
@@ -59,7 +52,8 @@ inkwell has three areas, from left to right.
 **The editor** is where you write. Along the top you'll see the note's title, a **Saved just now** indicator, and buttons for pinning, links, attachments, sharing and more.
 
 <Screenshot
-  alt="The inkwell window with the sidebar, note list and editor labelled"
+  src={welcomeNote}
+  alt="The inkwell window after creating a vault: the sidebar with the Getting Started folder, and the Welcome to inkwell note open in the editor"
   caption="Capture a window with a few notes and one open, so all three areas are visible."
 />
 

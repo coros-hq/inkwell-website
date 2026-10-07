@@ -2,14 +2,13 @@
 import { Image } from "astro:assets";
 import logo from "../assets/logo.svg";
 
-// TODO: point external links (GitHub, license) at the real URLs
 const links = [
   { label: "Features", href: "#features" },
   { label: "Your files", href: "#your-files" },
   { label: "FAQ", href: "#faq" },
   { label: "Download", href: "#download" },
   { label: "Docs", href: "/docs/" },
-  { label: "GitHub", href: "#" },
+  { label: "GitHub", href: "https://github.com/coros-hq/inkwell" },
 ];
 // On the landing page anchors scroll in place; elsewhere they point back to it.
 const prefix = Astro.url.pathname === '/' ? '' : '/';

@@ -6,6 +6,8 @@ order: 5
 related: [writing, charts, boards-and-tasks]
 ---
 
+import customTable from '../../assets/docs/customizable-table.png';
+
 inkwell supports two kinds of tables. Pick the one that fits.
 
 | | Markdown table | Table (customisable) |
@@ -32,11 +34,12 @@ Add a colon in the divider row to align a column: `:--` left, `:-:` centre, `--:
 ## Insert a customisable table
 
 1. On an empty line, type `/table` and press <Kbd keys="enter" />.
-2. A table appears with three columns (**Name**, **Status** and **Date**) and three empty rows.
+2. A table appears with three columns (**Name**, **Status** and **Date**) and three rows. The Date cells start out set to today's date.
 3. Click any cell to edit it.
 
 <Screenshot
-  alt="A customisable table with a Select column, a Date column and a Sum footer"
+  src={customTable}
+  alt="A customisable table with Name, Status and Date columns and a New row button"
   caption="Capture a table with Name, Status (coloured options) and a Number column so the Sum row shows."
 />
 
