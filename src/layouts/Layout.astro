@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { themeCss } from "../lib/themes";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
   title?: string;
@@ -30,6 +31,7 @@ const {
     <meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}
     <slot name="head" />
+    <Analytics />
     <title>{title}</title>
     <style is:inline set:html={themeCss()} />
     <script is:inline define:vars={{ animate }}>
