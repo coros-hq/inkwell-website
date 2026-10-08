@@ -6,6 +6,7 @@ import canvas from "../assets/features/canvas.svg";
 import githubSync from "../assets/features/github-sync.svg";
 import themes from "../assets/features/themes.svg";
 import exportShare from "../assets/features/export-share.svg";
+import brainstorm from "../assets/features/brainstorm.svg";
 
 const features = [
   {
@@ -22,6 +23,11 @@ const features = [
     title: "A canvas for thinking visually",
     text: "Sketch diagrams, flows and mind maps in a built-in drawing canvas. Pick a shape, draw, connect and resize, or start from a Flowchart or Mind Map template and attach a note alongside.",
     image: canvas,
+  },
+  {
+    title: "A private space to think in points",
+    text: "Jot ideas down as nested points in a personal outline, then switch to a mind map to see them as branches. Reorder, collapse and undo as you go, or drop a brainstorm into any note with /brainstorm.",
+    image: brainstorm,
   },
   {
     title: "GitHub sync",
@@ -55,9 +61,16 @@ const features = [
       </p>
     </div>
 
-    <ul data-stagger data-card-stack class="mx-auto mt-10 flex max-w-xl flex-col gap-4 md:mt-14 md:grid md:max-w-none md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+    <ul
+      data-stagger
+      data-card-stack
+      class="mx-auto mt-10 flex max-w-xl flex-col gap-4 md:mt-14 md:grid md:max-w-none md:grid-cols-2 md:gap-6 lg:grid-cols-3"
+    >
       {features.map((f, i) => (
-        <li style={`--i: ${i}`} class="max-md:sticky max-md:top-[calc(1rem+var(--i)*1.25rem)] max-md:origin-top flex flex-col rounded-3xl border border-border bg-card p-6 shadow-[0_2px_8px_rgb(0_0_0/0.06)] md:p-8">
+        <li
+          style={`--i: ${i}`}
+          class="max-md:sticky max-md:top-[calc(1rem+var(--i)*1.25rem)] max-md:origin-top flex flex-col rounded-3xl border border-border bg-card p-6 shadow-[0_2px_8px_rgb(0_0_0/0.06)] md:p-8"
+        >
           <h3 class="text-lg font-semibold text-foreground">{f.title}</h3>
           <p class="mt-3 text-base leading-snug font-light text-muted-foreground">
             {f.text}

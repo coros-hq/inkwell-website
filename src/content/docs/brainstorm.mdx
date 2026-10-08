@@ -1,0 +1,88 @@
+---
+title: Brainstorm
+description: Think in nested points, switch between an outline and a mind map of the same data, and embed a live outline in any note.
+group: Organise
+order: 13
+related: [canvas, boards-and-tasks, shortcuts]
+---
+
+Brainstorm is a private place to think in points. Each brainstorm is an outline of nested points that you can also view as a mind map. Both views edit the same data, so a change in one appears in the other.
+
+## Open Brainstorm
+
+Click **Brainstorm** under **Quick Access** in the sidebar.
+
+The left panel lists your brainstorms.
+
+- Click **+** to create one.
+- Edit a brainstorm's title to rename it.
+- Click the trash icon to delete it. Inkwell asks you to confirm first.
+
+A toggle in the header switches between **Outline** and **Mind map**. Inkwell remembers your choice.
+
+## Outline view
+
+The outline is a list of points that can be nested as deeply as you like.
+
+| Do this | To |
+| --- | --- |
+| <Kbd keys="enter" /> | Start a new point. If the cursor is in the middle of a line, the text splits. |
+| <Kbd keys="tab" /> / <Kbd keys="shift+tab" /> | Nest / un-nest the point. |
+| <Kbd keys="alt+up" /> / <Kbd keys="alt+down" /> | Move the point up or down. |
+| <Kbd keys="mod+." /> | Collapse or expand a branch. The chevron does the same. |
+| <Kbd keys="backspace" /> on an empty point | Delete the point. |
+| <Kbd keys="up" /> / <Kbd keys="down" /> at the start / end of a point | Move between points. |
+
+You can also use the mouse:
+
+- Drag the grip handle on the left of a row to move that point anywhere.
+- Click a bullet to zoom into that branch. Use the breadcrumb to zoom back out.
+
+## Mind map view
+
+The mind map shows the brainstorm title as the central node, with your points branching out to the right.
+
+### Move around
+
+- Drag the background to pan.
+- Hold <Kbd keys="mod" /> and scroll to zoom.
+- Use the **+**, **−** and fit buttons at the bottom right.
+
+### Edit nodes
+
+| Do this | To |
+| --- | --- |
+| Click a node | Select it. |
+| Double-click, <kbd class="kbd">Space</kbd> or <kbd class="kbd">F2</kbd> | Edit the node's text. |
+| <Kbd keys="tab" /> | Add a child. |
+| <Kbd keys="enter" /> | Add a sibling. |
+| <Kbd keys="delete" /> or <Kbd keys="backspace" /> | Remove the node and its branch. |
+| Arrow keys | Move the selection. |
+| <Kbd keys="right" /> | Expand a collapsed node. |
+
+Long text wraps onto multiple lines instead of being cut off.
+
+### Collapse and expand
+
+Each node with children has a small button on its right edge. Click **−** to collapse it. A collapsed node shows a badge with the number of hidden points; click it to expand.
+
+<Callout type="note">
+  To move a node under a different parent, switch to the Outline view. Restructuring is done there.
+</Callout>
+
+## Undo and redo
+
+Press <Kbd keys="mod+z" /> to undo and <Kbd keys="mod+shift+z" /> (or <Kbd keys="ctrl+y" />) to redo. The buttons in the header do the same.
+
+Undo covers typing, adding, deleting, nesting, moving and collapsing, in both views. Inkwell keeps the last 200 steps. History resets when you switch to another brainstorm or leave the view.
+
+Renaming a brainstorm's title uses the field's own undo.
+
+## Put a brainstorm inside a note
+
+1. In the editor, type `/brainstorm`.
+2. Pick a brainstorm.
+
+A live, read-only outline appears in your note. You can expand or collapse points there. Click **Open** to jump to the full Brainstorm view.
+
+In the raw markdown, the embed is a fenced code block tagged `brainstorm`.
