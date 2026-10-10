@@ -3,7 +3,7 @@
  * (https://github.com/coros-hq/inkwell/releases). Asset names include the
  * version, so there's no version-free "latest" URL for them.
  */
-export const version = '1.0.0';
+export const version = '1.0.2';
 export const repo = 'https://github.com/coros-hq/inkwell';
 export const releasesUrl = `${repo}/releases`;
 export const releaseUrl = `${repo}/releases/tag/v${version}`;
@@ -45,7 +45,7 @@ export const platforms: Platform[] = [
 		note: '64-bit (x64)',
 		icon: 'windows',
 		primary: dl('.exe installer', `inkwell_${version}_x64-setup.exe`, '6.0 MB'),
-		others: [dl('.msi', `inkwell_${version}_x64_en-US.msi`, '7.7 MB')],
+		others: [dl('.msi', `inkwell_${version}_x64_en-US.msi`, '7.8 MB')],
 	},
 	{
 		id: 'linux',
