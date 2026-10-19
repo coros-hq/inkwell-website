@@ -1,6 +1,6 @@
 ---
 title: Themes and appearance
-description: Pick one of ten built-in themes or make your own, switch between light and dark, and choose any installed font.
+description: Pick one of thirteen built-in themes or make your own, switch between light and dark, and choose any installed font.
 group: Customise
 order: 19
 related: [settings, writing]
@@ -20,7 +20,17 @@ Themes are grouped under **Dark** and **Light**. The active theme's name and des
 
 <ThemeSwatches />
 
-The six dark themes are Midnight, Ink, Dusk, Forest, Gruvbox and Onyx. The four light themes are Parchment, Sepia, Fog and Graphite. Syntax colours in code blocks follow the active theme automatically.
+The eight dark themes are Midnight, Ink, Dusk, Forest, Gruvbox, Onyx, Solarized Osaka and Noir Ember. The five light themes are Parchment, Sepia, Fog, Graphite and Ivory Ember. Syntax colours in code blocks follow the active theme automatically.
+
+Three themes are new in 1.0.6, and each defines its own code-block syntax colours:
+
+- **Solarized Osaka** (dark) uses the palette from craftzdog/solarized-osaka.nvim, including its syntax colours: keywords and operators in green, strings and numbers in cyan, functions in blue, types in yellow, preprocessor directives and decorators in red, and comments in base01. Its accent is `#278bd3`.
+- **Noir Ember** (dark) is a luxury black with burnt orange. Its accent is `#fa7a1a`.
+- **Ivory Ember** (light) is a luxury white with burnt orange. Its accent is `#e8590c`.
+
+<Callout type="note" title="TODO: screenshots">
+  Capture the Themes tab in Settings with each new theme selected (Solarized Osaka, Noir Ember, Ivory Ember), plus a code block in each showing its syntax colours. No images have been added yet.
+</Callout>
 
 <Callout type="tip">
   This website has the same theme picker. Click the palette icon at the top to try them out.
@@ -77,6 +87,8 @@ On a Mac you can let the desktop show through inkwell:
 - **Settings → Appearance → Glass sidebar** affects the sidebar.
 - **Glass body** affects the note list and editor.
 - **Glass intensity** (0–100%) appears once either is on and controls how see-through it is.
+
+Glass mode has hairline dividers, soft hover and selected highlights, a faint sheen along the top, and the editor sits as a rounded floating card. On light themes the glass keeps a minimum opacity (about 88% for the editor card), so wallpaper colours don't show through your text.
 
 These options are labelled **macOS** and don't do anything on Windows or Linux.
 

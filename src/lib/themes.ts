@@ -30,6 +30,9 @@ export const themes: Theme[] = [
 	{ id: 'fog', label: 'Fog', description: 'Cool silver with slate blue', mode: 'light', bg: '#f4f6f9', sidebar: '#eaedf2', accent: '#2563eb', text: '#1a2030', border: '#dde2ea' },
 	{ id: 'graphite', label: 'Graphite', description: 'Grayscale black & white, Notion-style', mode: 'light', bg: '#ffffff', sidebar: '#f7f7f7', accent: '#171717', text: '#171717', border: '#e6e6e6' },
 	{ id: 'onyx', label: 'Onyx', description: 'Grayscale dark, Notion-style', mode: 'dark', bg: '#1a1a1a', sidebar: '#202020', accent: '#d9d9d9', text: '#e6e6e6', border: '#2e2e2e' },
+	{ id: 'solarized-osaka', label: 'Solarized Osaka', description: 'Deep teal-black with Solarized blue, after craftzdog/solarized-osaka.nvim', mode: 'dark', bg: '#00141a', sidebar: '#00141a', accent: '#278bd3', text: '#9fabad', border: '#073541' },
+	{ id: 'noir-ember', label: 'Noir Ember', description: 'Luxury black with burnt orange', mode: 'dark', bg: '#0f0f0f', sidebar: '#0a0a0a', accent: '#fa7a1a', text: '#f0ede8', border: '#242424' },
+	{ id: 'ivory-ember', label: 'Ivory Ember', description: 'Luxury white with burnt orange', mode: 'light', bg: '#fdfcfa', sidebar: '#f7f5f2', accent: '#e8590c', text: '#1c1816', border: '#e5e2dc' },
 ];
 
 export type Tokens = Record<string, string>;

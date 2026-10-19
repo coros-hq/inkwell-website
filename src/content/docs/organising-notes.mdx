@@ -10,6 +10,15 @@ import tabsMode from '../../assets/docs/tabs.png';
 
 Folders in inkwell are real folders on your disk, so the way you organise notes in the sidebar is exactly how they're laid out in Finder or Explorer.
 
+## The sidebar
+
+The sidebar has four sections:
+
+- **Quick links**: Notes, Board, Brainstorm and Draw. Brainstorm and Draw only appear when you've turned them on in **Settings → Features**. The active link is shown as an accent pill.
+- **Folders**: your folder tree. It has a capped height and scrolls inside, so **Tags** always stays visible.
+- **Tags**: your [folder tags](#folder-tags).
+- **Open Files**: notes you opened with **Open file…**.
+
 ## Create a note
 
 - Click **New note** (the pen icon) at the top of the sidebar to create a note at the top level of your vault, shown as **Library**.
@@ -91,7 +100,36 @@ In the list's header, click **Switch to open tabs** to change to tabs. In the ta
   caption="Capture a window in tab mode with three notes open and one highlighted."
 />
 
-## Tags
+## Folder tags
+
+Tags let you label folders with a name and a colour, and then filter or group by them.
+
+### Create a tag
+
+Click the **+** in the **Tags** section of the sidebar, then enter a name and choose a colour.
+
+### Assign tags to folders
+
+- <Kbd keys="mod" /> + click one or more folders to tick them, then click a tag.
+- Or right-click a folder and toggle tags in its menu. If the folder is part of a selection, the change applies to every ticked folder.
+
+Tagged folders show coloured dots on the right of the row.
+
+### Filter by tag
+
+With no folders selected, click a tag to filter the sidebar to the folders that carry it.
+
+### Edit or delete a tag
+
+Click the pencil icon next to a tag, or right-click it, to rename it, change its colour or delete it. The change applies to every folder using that tag.
+
+### Group by tag
+
+The folder context menu's **Group by tag** option groups both sub-folders and notes under their first tag. Each group has a collapsible `#tag` header, and an **Untagged** group comes last.
+
+Tags are stored per vault in `.inkwell/folders.json`. You can also find tagged folders from [Search](/docs/search/) by typing `#` and the tag name.
+
+## Note tags
 
 Each note can carry tags in its frontmatter (for example `tags: [project, ideas]`). Searching also looks through tags. See [Vaults and your files](/docs/vaults-and-files/#the-note-file-format).
 

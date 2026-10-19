@@ -24,7 +24,7 @@ Pick and create themes. See [Themes and appearance](/docs/themes/).
 | **Mode** | Switches between a dark and a light theme (the last one you used of each). | Dark |
 | **Glass sidebar** | Shows the desktop through the sidebar. macOS only. | Off |
 | **Glass body** | Shows the desktop through the note list and editor. macOS only. | Off |
-| **Glass intensity** | How see-through the glass is, from 0% to 100%. Only shown when a glass option is on. | 50% |
+| **Glass intensity** | How see-through the glass is, from 0% to 100%. Only shown when a glass option is on. On light themes the glass keeps a minimum opacity so wallpaper colours don't show through text. | 50% |
 
 ## Editor
 
@@ -33,7 +33,8 @@ Pick and create themes. See [Themes and appearance](/docs/themes/).
 | **Font family** | The editor's typeface. Pick a built-in font or any font installed on your computer. | Inter |
 | **Font size** | **Small** 13px, **Default** 15px, **Medium** 17px, **Large** 19px. | Default (15px) |
 | **Line height** | **Compact** 1.4, **Default** 1.7, **Relaxed** 2.0, **Double** 2.4. | Default (1.7) |
-| **Vim mode** | Edit notes with Vim keybindings, including modal editing, motions and `:` commands. | Off |
+| **Vim mode** | Edit notes with Vim keybindings, including modal editing, motions and `:` commands. The `--NORMAL--` status bar is hidden; the `:` and `/` prompts still appear when used. | Off |
+| **Editor width** | The side space around note text, in the editor and the preview: **Narrow** 600px, **Default** 740px, **Wide** 960px or **Full**. Exports keep the default width. | Default (740px) |
 | **Default note mode** | **Normal** (one pane) or **Markdown** (source and preview side by side) for notes you haven't set individually. | Normal |
 
 A **Preview** under the options shows how your font choices look.
@@ -43,6 +44,7 @@ A **Preview** under the options shows how your font choices look.
 | Setting | What it does | Default |
 | --- | --- | --- |
 | **Canvas** | Adds the **Draw** page to the sidebar. See [Canvas](/docs/canvas/). | Off |
+| **Brainstorm** | Adds **Brainstorm** to the sidebar and the `/brainstorm` slash command. Turning it off hides both; your existing brainstorms and embeds are kept. See [Brainstorm](/docs/brainstorm/). | Off |
 | **Canvas storage** | Shows whether drawings are global or stored in a vault. **Link to a vault…** stores them in a chosen vault, and **Unlink** goes back. Only shown when Canvas is on. | Not linked (global) |
 
 ## Shortcuts

@@ -1,0 +1,49 @@
+---
+title: Changelog
+description: What's new and fixed in each inkwell release.
+group: Reference
+order: 24
+related: [getting-started, settings, linking-notes]
+---
+
+## 1.0.6
+
+### Added
+
+- **Folder tags.** Create tags with a name and colour from the **+** in the new **Tags** section of the sidebar. <Kbd keys="mod" /> + click one or more folders and click a tag, or right-click a folder and toggle tags in its menu. Tagged folders show coloured dots on the right of the row, and clicking a tag with nothing selected filters the sidebar to its folders. Tags can be renamed, recoloured or deleted, and the change applies to every folder using them. They're stored per vault in `.inkwell/folders.json`. See [Organising notes](/docs/organising-notes/#folder-tags).
+- **Group by tag** for folders. The folder context menu option now groups both sub-folders and notes under their first tag, with collapsible `#tag` headers and an **Untagged** group last.
+- **Search by tag.** In <Kbd keys="mod+k" />, `#name` searches tags only. A plain query also matches notes inside a tagged folder, including parent folders. See [Search](/docs/search/).
+- **Optional Brainstorm.** Brainstorm is now a toggle in **Settings → Features**, off by default like Canvas. When off, the sidebar link and the `/brainstorm` slash command are hidden. Existing brainstorm data and embeds are untouched. See [Brainstorm](/docs/brainstorm/).
+- **New themes** in **Settings → Appearance**: Solarized Osaka (dark), Noir Ember (dark) and Ivory Ember (light), each with its own code-block syntax colours. See [Themes and appearance](/docs/themes/).
+
+### Improved
+
+- **Sidebar reorganised** into Quick links (Notes, Board, Brainstorm and Draw when enabled), Folders, Tags and Open Files. The folder tree has a capped height and scrolls inside, so Tags stay visible. The active quick link is an accent pill, and section headings are quieter sentence case.
+- **Glass mode (macOS)** is polished: translucent hairline dividers, soft translucent hover and selected highlights, a faint top sheen, and the editor as a rounded floating card. On light themes the glass keeps a minimum opacity (about 88% for the editor card) so wallpaper colours don't show through text.
+- The **Search** button in the sidebar now has a filled background.
+- **Syntax highlighting** has separate token colours for types and classes, and for operators and punctuation. Other themes look the same as before. The rendered preview now colours function and class names separately.
+
+### Fixed
+
+- **Draw in light and dark themes.** Near-white or near-black strokes, fills and shape text now adapt to the current theme when drawn instead of becoming invisible. Saved drawings are not modified, so they look right in both themes. Sticky notes and clearly coloured shapes are unchanged.
+- The **Draw default font** is now the hand-written font everywhere it previously fell back to sans (sticky notes, older shapes, templates and category elements). Explicit font choices are kept.
+- **Vim mode:** the `--NORMAL--` status bar at the bottom of the editor is gone. The `:` and `/` prompts still appear when used.
+
+## 1.0.4
+
+### Added
+
+- Code blocks in the single-pane editor have a **Copy** button on hover. It copies the code without the fences.
+- **Editor width** in **Settings → Editor** controls the side space around your note text, in both the editor and the preview. See [Settings](/docs/settings/#editor).
+- Obsidian-style `[[wikilinks]]` are clickable in the editor and the preview. See [Linking notes](/docs/linking-notes/#wikilinks).
+- In the single-pane editor, a plain click on a note link or wikilink opens the note. If your cursor is already on that line, the click places the caret so you can edit the link.
+- Note links in the editor show a pointer cursor on hover.
+
+### Fixed
+
+- Closing the window while in macOS full screen no longer leaves a black screen. The window leaves full screen first, then hides.
+- Notes no longer gain extra blank lines at the top each time they reload. Existing notes with leftover blank lines are cleaned up when you open them.
+- Files moved or copied into your vault from Finder now appear without restarting the app.
+- Task checkboxes now show in the single-pane (Normal) editor instead of raw `[ ]` and `[x]`.
+- Checked tasks show strikethrough, dimmed text.
+- Removed the non-functional **…** button from the editor toolbar.

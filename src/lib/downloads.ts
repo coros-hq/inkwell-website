@@ -3,7 +3,7 @@
  * (https://github.com/coros-hq/inkwell/releases). Asset names include the
  * version, so there's no version-free "latest" URL for them.
  */
-export const version = "1.0.4";
+export const version = "2.0.0";
 export const repo = "https://github.com/coros-hq/inkwell";
 export const releasesUrl = `${repo}/releases`;
 export const releaseUrl = `${repo}/releases/tag/v${version}`;

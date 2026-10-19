@@ -43,7 +43,20 @@ The link is stored as plain markdown, so it survives in the file:
 See [@Weekly planning](note://note-1234567890) for details.
 ```
 
-Hold <Kbd keys="mod" /> and click a mention to open that note.
+In the single-pane editor, click a mention to open that note. If your cursor is already on that line, the click places the caret so you can edit the link instead. In the raw-source pane, hold <Kbd keys="mod" /> and click.
+
+## Wikilinks
+
+Obsidian-style `[[wikilinks]]` are clickable in the editor and the preview. These forms work:
+
+| Write | Opens |
+| --- | --- |
+| `[[Note]]` | The note called Note. |
+| `[[Note\|alias]]` | The same note, shown as *alias*. |
+| `[[Note#Heading]]` | The note. It doesn't scroll to the heading. |
+| `[[folder/Note]]` | The note at that path. |
+
+inkwell matches by file name or path, ignoring case, then by note title. This works with Obsidian vaults and single files.
 
 ## Link to a board or task from text
 
