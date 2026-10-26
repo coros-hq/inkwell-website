@@ -13,13 +13,24 @@ Shortcuts on this page follow the **⌘ Mac / Ctrl** switch at the top of the si
 | Area | Action | Shortcut |
 | --- | --- | --- |
 | App | Search all notes | <Kbd keys="mod+k" /> |
-| App | Show or hide the sidebar | <Kbd keys="mod+b" /> |
+| App | Open the command palette (Shortcuts tab of search) | <Kbd keys="mod+shift+p" /> |
+| App | Show or hide the sidebar | <Kbd keys="mod+shift+b" /> |
+| App | Focus mode: hide everything except the open note | <Kbd keys="mod+shift+d" /> |
+| App | Switch the open note between Normal and Markdown mode | <Kbd keys="mod+shift+e" /> |
 | App | Open a standalone `.md` file | <Kbd keys="mod+o" /> |
 | App | New note at the top level of the vault | <Kbd keys="mod+shift+n" /> |
 | App | New folder (inside the selected folder) | <Kbd keys="mod+shift+f" /> |
 | App | Quick capture, from any app (global) | <Kbd keys="mod+n" /> |
 | App | Delete the selected notes (asks first, when not typing) | <Kbd keys="delete" /> |
 | Search | Close the search window | <Kbd keys="esc" /> |
+| Focus mode | Leave focus mode | <Kbd keys="esc" /> |
+| Sidebar | Move keyboard focus to the folder tree | <Kbd keys="mod+0" /> |
+| Sidebar | Move keyboard focus to the note list | <Kbd keys="mod+9" /> |
+| Sidebar | Move between rows | <Kbd keys="up" /> / <Kbd keys="down" />, <Kbd keys="home" /> / <Kbd keys="end" /> |
+| Sidebar | Expand / collapse a folder | <Kbd keys="right" /> / <Kbd keys="left" /> |
+| Sidebar | Open the note or toggle the folder | <Kbd keys="enter" /> or <Kbd keys="space" /> |
+| Sidebar | Rename the focused note or folder | <Kbd keys="f2" /> |
+| Sidebar | Return to the editor | <Kbd keys="esc" /> |
 | Sidebar | Rename a note or folder | Double-click it |
 | Sidebar | Confirm or cancel a rename | <Kbd keys="enter" /> / <Kbd keys="esc" /> |
 | Sidebar | Add or remove a note from the selection | <Kbd keys="mod" /> + click |
@@ -28,6 +39,8 @@ Shortcuts on this page follow the **⌘ Mac / Ctrl** switch at the top of the si
 | Editor | Italic | <Kbd keys="mod+i" /> |
 | Editor | Underline | <Kbd keys="mod+u" /> |
 | Editor | Strikethrough | <Kbd keys="mod+shift+s" /> |
+| Editor | Select the next occurrence (multiple cursors) | <Kbd keys="mod+d" /> |
+| Editor | Nest / un-nest a list item | <Kbd keys="tab" /> / <Kbd keys="shift+tab" /> |
 | Editor | Undo | <Kbd keys="mod+z" /> |
 | Editor | Redo | <Kbd keys="mod+shift+z" /> |
 | Editor | Open the `/` command menu | `/` on an empty line |
@@ -88,7 +101,11 @@ Shortcuts on this page follow the **⌘ Mac / Ctrl** switch at the top of the si
 
 ## Customise the shortcuts
 
-Six of the shortcuts can be changed in **Settings → Shortcuts**: **Search**, **Toggle Sidebar**, **Open File**, **Find in Note**, **New Note** and **New Folder**. See [Settings reference](/docs/settings/#shortcuts). The rest are fixed.
+Eleven of the shortcuts can be changed in **Settings → Shortcuts**: **Search**, **Command Palette**, **Toggle Sidebar**, **Focus Mode**, **Single / Split Mode**, **Focus File Tree**, **Focus Note List**, **Open File**, **Find in Note**, **New Note** and **New Folder**. See [Settings reference](/docs/settings/#shortcuts). The rest are fixed.
+
+<Callout type="note">
+  Toggle Sidebar used to be <Kbd keys="mod+b" />, which clashed with Bold in the editor. It is now <Kbd keys="mod+shift+b" />.
+</Callout>
 
 <Callout type="note">
   <Kbd keys="mod+n" /> is the system-wide quick capture shortcut. That's why **New Note** inside the app uses <Kbd keys="mod+shift+n" /> instead.

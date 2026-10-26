@@ -6,7 +6,46 @@ order: 24
 related: [getting-started, settings, linking-notes]
 ---
 
-## 1.0.6
+## 2.1.1
+
+A maintenance release with no user-facing changes.
+
+## 2.1.0
+
+### Added
+
+- **Calendar.** A private weekly planner. Turn it on in **Settings → Features → Calendar** and a **Calendar** link appears in the sidebar. Hours run down the side: drag across empty space to create an event, drag a card to move it, and drag its top or bottom edge to change its time. Events without a time sit in an all-day row where you can reorder them, and multi-day events are bars across the days. Events have a colour, notes, and a done checkbox, and they show up in search. Your calendar stays on your computer and is never synced or shared. See [Calendar](/docs/calendar/).
+- **Command palette.** <Kbd keys="mod+shift+p" /> opens search on the new **Shortcuts** tab, which lists every shortcut. Pick one to run it. See [Search](/docs/search/#the-shortcuts-tab).
+- **Focus mode.** <Kbd keys="mod+shift+d" /> hides everything except the open note. Press <Kbd keys="esc" /> to come back. See [Writing](/docs/writing/#focus-mode).
+- **Keyboard navigation for the sidebar.** <Kbd keys="mod+0" /> moves focus to the folder tree and <Kbd keys="mod+9" /> to the note list. Use the arrow keys, <Kbd keys="home" /> and <Kbd keys="end" /> to move, <Kbd keys="enter" /> to open, <Kbd keys="f2" /> to rename and <Kbd keys="esc" /> to return to the editor.
+- **Single / split mode shortcut.** <Kbd keys="mod+shift+e" /> switches the open note between Normal and Markdown mode.
+- **Nested lists.** <Kbd keys="tab" /> and <Kbd keys="shift+tab" /> nest and un-nest bullet and numbered items. Nested numbered items get outline numbers like `1.2`, and <Kbd keys="enter" /> on one starts the next (`1.3`).
+- **Images and Excalidraw in Draw.** Paste or upload images onto the canvas, and paste Excalidraw content (or add a `.excalidraw` file) to convert it into canvas shapes. Shapes with no equivalent, like diamonds and frames, are approximated. See [Canvas](/docs/canvas/#images-and-excalidraw).
+- **Catppuccin themes.** Catppuccin Mocha (dark) and Catppuccin Latte (light). See [Themes and appearance](/docs/themes/).
+- **Portable Windows build.** `inkwell_*_x64-portable.zip` runs without an installer or admin rights. A portable copy doesn't update itself: when an update is available, the update button opens the releases page so you can download the new zip. See [Getting started](/docs/getting-started/#windows-portable).
+- A new empty state in the note list: **A blank page awaits**, with a **New note** button.
+
+### Improved
+
+- **Toggle Sidebar** is now <Kbd keys="mod+shift+b" />, because <Kbd keys="mod+b" /> is Bold in the editor. If you had never changed it, the new default applies automatically.
+- **Search** shows a snippet around the first match in a note's content, so a content hit doesn't look like a stray title match.
+- Links to websites and email addresses open in your default browser.
+- Large notes are saved a moment after you stop typing instead of on every keystroke, so typing stays smooth. Pending changes are saved when you switch vaults or close the window.
+- The editor toolbar scrolls sideways in narrow panes instead of clipping its buttons.
+
+## 2.0.1
+
+### Added
+
+- **Trash.** Deleting a note or folder now moves it to **Trash** instead of erasing it. Open **Trash** in the sidebar to **Restore** an item to its original location or delete it forever, or use **Empty trash**. See [Organising notes](/docs/organising-notes/#delete-notes-and-folders).
+
+### Improved
+
+- **Safer saving.** Notes and data files are written to a temporary file first and then swapped in, so a crash or power cut mid-save can't leave a half-written file. Overlapping saves of one file are queued so they can never land out of order.
+- **Automatic backups.** Data files in `.inkwell` keep a `.bak` of the last good version. If one is damaged, inkwell keeps the damaged copy as `.corrupt-<timestamp>` and loads the backup instead of starting empty. See [Vaults and your files](/docs/vaults-and-files/#the-hidden-inkwell-folder).
+- If a save fails (a full disk, a read-only folder, missing permissions), inkwell now tells you instead of failing silently.
+
+## 2.0.0
 
 ### Added
 

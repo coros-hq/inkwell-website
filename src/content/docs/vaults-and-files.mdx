@@ -72,6 +72,8 @@ inkwell keeps its own bookkeeping in a `.inkwell` folder inside the vault. It's 
 | `app.json` | Boards and tasks, plus each note's attachments, links, and the list of standalone files you've opened. |
 | `boards.json` | A copy of your boards, columns and tasks. |
 | `team.json` | Only present on [shared vaults](/docs/collaboration/). It ties the folder to the shared copy. |
+| `trash/` | Notes and folders you deleted, kept until you restore them or empty the trash. See [Organising notes](/docs/organising-notes/#delete-notes-and-folders). |
+| `*.bak`, `*.corrupt-<timestamp>` | Safety copies. inkwell keeps a `.bak` of the last good version of each data file. If a data file can't be read, it keeps the damaged copy as `.corrupt-<timestamp>` and loads the backup instead. |
 | `canvas.json`, `canvas-notes.md` | Your Draw canvas. Only here if you've linked the canvas to this vault. |
 
 <Callout type="warning" title="Canvas files are global by default">

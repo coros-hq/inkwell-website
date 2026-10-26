@@ -32,6 +32,8 @@ export const themes: Theme[] = [
 	{ id: 'onyx', label: 'Onyx', description: 'Grayscale dark, Notion-style', mode: 'dark', bg: '#1a1a1a', sidebar: '#202020', accent: '#d9d9d9', text: '#e6e6e6', border: '#2e2e2e' },
 	{ id: 'solarized-osaka', label: 'Solarized Osaka', description: 'Deep teal-black with Solarized blue, after craftzdog/solarized-osaka.nvim', mode: 'dark', bg: '#00141a', sidebar: '#00141a', accent: '#278bd3', text: '#9fabad', border: '#073541' },
 	{ id: 'noir-ember', label: 'Noir Ember', description: 'Luxury black with burnt orange', mode: 'dark', bg: '#0f0f0f', sidebar: '#0a0a0a', accent: '#fa7a1a', text: '#f0ede8', border: '#242424' },
+	{ id: 'catppuccin-mocha', label: 'Catppuccin Mocha', description: 'Soothing pastel dark with mauve', mode: 'dark', bg: '#1e1e2e', sidebar: '#181825', accent: '#cba6f7', text: '#cdd6f4', border: '#313244' },
+	{ id: 'catppuccin-latte', label: 'Catppuccin Latte', description: 'Soothing pastel light with mauve', mode: 'light', bg: '#eff1f5', sidebar: '#e6e9ef', accent: '#8839ef', text: '#4c4f69', border: '#ccd0da' },
 	{ id: 'ivory-ember', label: 'Ivory Ember', description: 'Luxury white with burnt orange', mode: 'light', bg: '#fdfcfa', sidebar: '#f7f5f2', accent: '#e8590c', text: '#1c1816', border: '#e5e2dc' },
 ];
 

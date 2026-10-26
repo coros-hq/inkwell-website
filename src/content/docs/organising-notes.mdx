@@ -79,8 +79,10 @@ Click the pin icon at the top of a note to pin it. Pinned notes also appear in a
 
 Right-click and choose **Delete note** or **Delete folder**, click the bin icon on a note, or select notes and press <Kbd keys="delete" />. inkwell always asks you to confirm first.
 
-<Callout type="warning" title="Deleting is permanent">
-  There is no trash. The confirmation reads "This cannot be undone": the file is removed from your vault folder. If you keep your vault in a folder that's backed up or under version control, you can still recover it from there.
+Deleted notes and folders go to **Trash**, not straight off your disk. Open **Trash** under **Quick links** in the sidebar to see them. Click **Restore** (**Restore to original location**) to put one back, or **Delete forever** to erase it. **Empty trash** erases everything in it, and asks first. Anything you erase from the trash cannot be restored.
+
+<Callout type="note" title="Trash lives in the vault">
+  Trashed items are kept in the vault's `.inkwell/trash` folder, so they take up disk space until you empty the trash. If inkwell can't move an item to the trash, it tells you and does not delete it.
 </Callout>
 
 Notes you opened with **Open file…** are different. They show **Remove from library** instead of delete, and the file on disk is never touched.
