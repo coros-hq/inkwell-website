@@ -1,0 +1,35 @@
+---
+title: Claude (MCP)
+description: Let Claude Desktop read and manage your notes, calendar and boards through inkwell's built-in MCP server.
+group: Share
+order: 18
+related: [calendar, boards-and-tasks, settings]
+---
+
+inkwell includes a built-in [MCP](https://modelcontextprotocol.io) server, so Claude Desktop can work with your vault directly, with no copy and paste. Notes Claude writes land as normal `.md` files with frontmatter.
+
+## Turn it on
+
+On launch, release builds add an `inkwell` entry to Claude Desktop's config and keep it pointed at the installed app. Restart Claude Desktop once to pick it up. You can turn it off any time in **Settings → Claude**.
+
+## What Claude can do
+
+**Notes**
+
+- Get information about the active vault.
+- List, read and search notes.
+- Create and update notes.
+
+**Calendar**
+
+- List, create, update and delete calendar events. Changes appear live in inkwell. See [Calendar](/docs/calendar/).
+
+**Boards**
+
+- List, create, rename and delete boards.
+- List, read, create, update and delete tasks. Updating a task can edit its fields, tick subtasks and move it between columns.
+- Comment on a task. Changes appear live in inkwell. See [Boards and tasks](/docs/boards-and-tasks/).
+
+<Callout type="note" title="Other MCP clients">
+  A standalone `inkwell-mcp` binary is also available for other MCP clients.
+</Callout>

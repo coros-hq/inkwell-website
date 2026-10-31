@@ -1,6 +1,6 @@
 ---
 title: Calendar
-description: Plan your week in an hour grid, with all-day cards, multi-day events and search.
+description: Plan your week in an hour grid, with all-day cards, multi-day events and search, and sync it with the macOS Calendar app.
 group: Organise
 order: 13
 related: [search, settings, brainstorm]
@@ -46,6 +46,20 @@ Events with a start time sit in the hour grid at that time. Events that overlap 
 
 Events appear in [search](/docs/search/). Search matches an event's title and notes. Picking one opens its week and its details.
 
+## Sync with the macOS Calendar app
+
+On a Mac, the calendar can sync both ways with the Calendar app, and so with every account added to it, such as iCloud and Google.
+
+1. Open the **Calendar** page and click **Sync** at the top.
+2. Allow inkwell to access your calendars when macOS asks.
+3. Under **Calendars to show**, choose which calendars appear in the planner. New calendars are included unless you switch them off.
+
+Events from the calendars you chose now appear in the week, from about three months back to a year ahead. Changes you make to one of them in inkwell are written back to its calendar. Events you create in inkwell go to a calendar named **Inkwell**, so they show up in the Calendar app too. Click **Sync** again to refresh.
+
+- If an event changed on both sides since the last sync, the Calendar app's version wins.
+- Recurring events, events that run past midnight and events in read-only calendars appear in inkwell but can't be edited there.
+- Sync is only available in the macOS app. You can change the connection later in **Settings → Features**, next to **Calendar**.
+
 ## Where your calendar is saved
 
-The calendar is saved on your computer, not inside any vault, so the same calendar shows whichever vault is open. It is never synced to GitHub or shared with a [team vault](/docs/collaboration/).
+The calendar is saved on your computer, not inside any vault, so the same calendar shows whichever vault is open. It is never synced to GitHub or shared with a [team vault](/docs/collaboration/). The only sync is the optional one with the macOS Calendar app, described above.

@@ -1,8 +1,9 @@
 ---
 title: Brainstorm
-description: Think in nested points, switch between an outline and a mind map of the same data, and embed a live outline in any note.
+description: Think in nested points, switch between an outline and a mind map of the same data, link related ideas, import and export XMind files, and embed a live outline in any note.
 group: Organise
 order: 13
+new: true
 related: [canvas, boards-and-tasks, shortcuts]
 ---
 
@@ -20,6 +21,7 @@ The left panel lists your brainstorms.
 
 - Click **+** to create one.
 - Edit a brainstorm's title to rename it.
+- Click the upload icon to [import an XMind file](#import-and-export-xmind).
 - Click the trash icon to delete it. Inkwell asks you to confirm first.
 
 A toggle in the header switches between **Outline** and **Mind map**. Inkwell remembers your choice.
@@ -41,6 +43,7 @@ You can also use the mouse:
 
 - Drag the grip handle on the left of a row to move that point anywhere.
 - Click a bullet to zoom into that branch. Use the breadcrumb to zoom back out.
+- Click **Add point** under the list to add a point without the keyboard.
 
 ## Mind map view
 
@@ -52,7 +55,9 @@ The mind map shows the brainstorm title as the central node, with your points br
 - Hold <Kbd keys="mod" /> and scroll to zoom.
 - Use the **+**, **−** and fit buttons at the bottom right.
 
-### Edit nodes
+### Add and edit nodes
+
+The toolbar at the top left has **Child**, **Sibling**, **Link** and **Delete** buttons that act on the selected node. A selected node also shows a **+** on its right to add a child and one underneath to add a sibling.
 
 | Do this | To |
 | --- | --- |
@@ -60,27 +65,78 @@ The mind map shows the brainstorm title as the central node, with your points br
 | Double-click, <kbd class="kbd">Space</kbd> or <kbd class="kbd">F2</kbd> | Edit the node's text. |
 | <Kbd keys="tab" /> | Add a child. |
 | <Kbd keys="enter" /> | Add a sibling. |
+| <kbd class="kbd">L</kbd> | Link the node to another one. |
 | <Kbd keys="delete" /> or <Kbd keys="backspace" /> | Remove the node and its branch. |
 | Arrow keys | Move the selection. |
 | <Kbd keys="right" /> | Expand a collapsed node. |
 
 Long text wraps onto multiple lines instead of being cut off.
 
+### Move a node
+
+Drag a node onto another to change where it sits:
+
+- Drop it **in the middle** of a node to make it that node's last child.
+- Drop it on a node's **top or bottom edge** to place it just before or after that node, as a sibling. A bar shows where it will land.
+- Drop it on the central node to make it a top-level point.
+
+You can't drop a node into its own branch. Dragging on empty background still pans the map.
+
+### Link related ideas
+
+Links connect any two nodes, wherever they are in the tree, with a dashed arrow. They're for ideas that relate without one being a sub-point of the other, like "depends on" or "contradicts".
+
+1. Select a node and press <kbd class="kbd">L</kbd>, or click **Link** in the toolbar.
+2. Click the node to link to. Press <kbd class="kbd">Esc</kbd> to cancel.
+3. Type a label if you want one and press <kbd class="kbd">Enter</kbd>.
+
+To change a link, click it (or its label) to select it. Then:
+
+- Double-click it, or press <Kbd keys="enter" />, to edit the label.
+- Press <Kbd keys="delete" />, or click **Unlink**, to remove it.
+
+If a linked node is hidden inside a collapsed branch, the arrow points to the nearest visible node above it. Deleting a node also removes the links that point to it. Links are shown in the mind map, not in the outline.
+
 ### Collapse and expand
 
 Each node with children has a small button on its right edge. Click **−** to collapse it. A collapsed node shows a badge with the number of hidden points; click it to expand.
-
-<Callout type="note">
-  To move a node under a different parent, switch to the Outline view. Restructuring is done there.
-</Callout>
 
 ## Undo and redo
 
 Press <Kbd keys="mod+z" /> to undo and <Kbd keys="mod+shift+z" /> (or <Kbd keys="ctrl+y" />) to redo. The buttons in the header do the same.
 
-Undo covers typing, adding, deleting, nesting, moving and collapsing, in both views. Inkwell keeps the last 200 steps. History resets when you switch to another brainstorm or leave the view.
+Undo covers typing, adding, deleting, nesting, moving, linking and collapsing, in both views. Inkwell keeps the last 200 steps. History resets when you switch to another brainstorm or leave the view.
 
 Renaming a brainstorm's title uses the field's own undo.
+
+## Import and export XMind
+
+inkwell can read and write [XMind](https://xmind.com) files (`.xmind`), so you can bring a map in from XMind or take one out.
+
+### Import
+
+1. In the Brainstorm panel, click the upload icon (**Import XMind file**).
+2. Choose a `.xmind` file.
+
+Each sheet in the file becomes its own brainstorm, and the first one opens. Files from current XMind versions and from XMind 8 are both supported. If the file can't be read, inkwell tells you why and imports nothing.
+
+| In XMind | In inkwell |
+| --- | --- |
+| The central topic | The brainstorm's title. |
+| Topics under it | Your top-level points, with all their children. |
+| Floating topics | Extra top-level points. |
+| Folded branches | Collapsed branches. |
+| Relationships, with their labels | Links, with their labels. |
+
+Anything inkwell has no place for is left out: markers, notes, labels, summaries and boundaries. A relationship that touches the central topic is also left out, because the central topic is the title here, not a node.
+
+### Export
+
+Open a brainstorm and click the download icon (**Export as XMind file**) in the header. Choose where to save it. The file holds your title, points, collapsed state and links.
+
+<Callout type="note">
+  Exporting and importing again gives you back the same points and links, but not the layout, colours or styling you may have set in XMind.
+</Callout>
 
 ## Put a brainstorm inside a note
 

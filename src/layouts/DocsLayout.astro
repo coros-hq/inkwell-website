@@ -91,8 +91,9 @@ const jsonLd = entry
 							<ul>
 								{g.items.map((d) => (
 									<li>
-										<a href={docUrl(d.id)} aria-current={entry?.id === d.id ? 'page' : undefined} class="block rounded-md px-2 py-1.5 text-foreground no-underline aria-[current=page]:bg-active aria-[current=page]:font-medium">
+										<a href={docUrl(d.id)} aria-current={entry?.id === d.id ? 'page' : undefined} class="flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-foreground no-underline aria-[current=page]:bg-active aria-[current=page]:font-medium">
 											{d.data.title}
+											{d.data.new && <span class="rounded-full bg-tag-bg px-1.5 py-0.5 text-[0.65rem] leading-none font-semibold tracking-wide text-tag-text uppercase">New</span>}
 										</a>
 									</li>
 								))}
@@ -109,8 +110,9 @@ const jsonLd = entry
 						<ul>
 							{g.items.map((d) => (
 								<li>
-									<a href={docUrl(d.id)} aria-current={entry?.id === d.id ? 'page' : undefined} class="block rounded-md px-2 py-1.5 text-[0.95rem] text-muted-foreground no-underline transition hover:bg-muted hover:text-foreground aria-[current=page]:bg-active aria-[current=page]:font-medium aria-[current=page]:text-foreground">
+									<a href={docUrl(d.id)} aria-current={entry?.id === d.id ? 'page' : undefined} class="flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-[0.95rem] text-muted-foreground no-underline transition hover:bg-muted hover:text-foreground aria-[current=page]:bg-active aria-[current=page]:font-medium aria-[current=page]:text-foreground">
 										{d.data.title}
+										{d.data.new && <span class="rounded-full bg-tag-bg px-1.5 py-0.5 text-[0.65rem] leading-none font-semibold tracking-wide text-tag-text uppercase">New</span>}
 									</a>
 								</li>
 							))}

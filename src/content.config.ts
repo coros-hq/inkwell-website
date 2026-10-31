@@ -12,6 +12,8 @@ const docs = defineCollection({
 		group: z.enum(docGroups),
 		/** Global order of the page in the sidebar and prev/next. */
 		order: z.number(),
+		/** Shows a "New" badge next to the page in the docs sidebar. */
+		new: z.boolean().default(false),
 		/** Slugs of related pages. */
 		related: z.array(z.string()).default([]),
 	}),

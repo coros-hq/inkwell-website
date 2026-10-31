@@ -6,6 +6,33 @@ order: 24
 related: [getting-started, settings, linking-notes]
 ---
 
+## Unreleased
+
+### Added
+
+- **Calendar sync with macOS.** On a Mac, the calendar can sync both ways with the Calendar app and every account in it, including iCloud and Google. Click **Sync** at the top of the Calendar, choose which calendars to show, and events you create in inkwell go to an **Inkwell** calendar. See [Calendar](/docs/calendar/#sync-with-the-macos-calendar-app).
+- **Nested notes.** A note can now have child notes, to any depth, like a GitHub issue with sub-issues. Hover a note in the list and click **+** to add a sub-note, or drag one note onto another to nest it. Children are indented under their parent and can be collapsed, and the editor's breadcrumb shows the full path. Deleting a parent deletes everything nested under it, and moving a parent to another folder moves its children too. See [Nested notes](/docs/nested-notes/).
+- **Brainstorm: add and move nodes in the mind map.** A toolbar and on-node **+** buttons add children and siblings with the mouse, and you can drag a node onto another to re-parent or reorder it. The outline has an **Add point** button. See [Brainstorm](/docs/brainstorm/#add-and-edit-nodes).
+- **Brainstorm: links.** Connect any two nodes with a labelled arrow. Select a node, press <kbd class="kbd">L</kbd> and click the other node. See [Brainstorm](/docs/brainstorm/#link-related-ideas).
+- **Claude can manage your calendar and boards.** The built-in MCP server now covers calendar events and Kanban boards and tasks, not just notes. See [Claude (MCP)](/docs/claude-mcp/).
+- **Create tags from notes and folders.** Hover a note or folder, click the **tag** icon and type a name to create a tag and apply it in one step. See [Organising notes](/docs/organising-notes/#create-a-tag).
+- **Vault switcher in the sidebar.** Click the vault name at the top of the sidebar to switch vaults, open a folder or create a new vault. See [Vaults and your files](/docs/vaults-and-files/#switch-vaults).
+- **Suggested vault on first launch.** A fresh install offers to create a vault at `Documents/Inkwell/Vault`, or you can change the location. See [Getting started](/docs/getting-started/).
+- **XMind import and export.** Import a `.xmind` file as one brainstorm per sheet, or export a brainstorm to `.xmind`. See [Brainstorm](/docs/brainstorm/#import-and-export-xmind).
+
+### Improved
+
+- **New flat design.** The sidebar, note list and tag badges lose their heavy borders and use flat colour fills. The light/dark toggle at the top of the sidebar is gone; change **Mode** in **Settings → Appearance**.
+- **Tag filtering shows everything that matches.** Clicking a tag lists the matching folders and notes under their full folder path, and opening one highlights it in the folder tree. See [Organising notes](/docs/organising-notes/#filter-by-tag).
+- **Notes shows all notes.** Clicking **Notes** in the sidebar's quick links clears the folder selection and lists every note, not just those outside folders.
+- Tag badges no longer show a `#`.
+- Long tag lists in right-click menus now scroll, and menus stay inside the window, so **Delete** is never cut off.
+- The note list's tabs toggle now uses a tabs icon instead of a stacked-squares icon that looked like a hierarchy.
+
+### Fixed
+
+- **Reopening after closing the window.** On macOS, closing inkwell with the red close button only hides it. Clicking the Dock icon now brings the window back.
+
 ## 2.1.1
 
 A maintenance release with no user-facing changes.

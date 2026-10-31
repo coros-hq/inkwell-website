@@ -1,0 +1,72 @@
+---
+title: Nested notes
+description: Give a note its own child notes, to any depth, for long projects that outgrow a single page, without turning them into folders.
+group: Organise
+order: 9.5
+new: true
+related: [organising-notes, linking-notes, brainstorm]
+---
+
+A note can have **child notes**, and those can have children of their own, as deep as you like. It works like a GitHub issue with sub-issues: one parent note holds the overview, and each child note holds one piece of the work.
+
+Nesting is separate from folders. A folder groups notes by *where they live*; nesting says *which note a note belongs to*. Use whichever fits, or both: nested notes sit inside whatever folder their parent is in.
+
+## Create a sub-note
+
+- In the note list, hover a note and click **+** (**New sub-note**).
+- Or open the note and click **New sub-note** in the top bar of the editor.
+
+The new note opens right away, nested under the note you started from.
+
+## Nest an existing note
+
+In the note list, drag a note and drop it **on top of another note**. It becomes that note's child, along with any notes nested under it. If you've selected several notes, they all move together.
+
+inkwell won't let a note become its own child or sit under one of its own descendants.
+
+<Callout type="note">
+  If the note you drop onto is in a different folder, the dropped note moves into that folder too, so a child always lives in the same folder as its parent.
+</Callout>
+
+## Move a note back out
+
+- Click **Move out of parent** on the note's row. It appears when you hover the row.
+- Or drag the note onto the heading at the top of the note list.
+
+The note goes back to the top level of its folder.
+
+## Expand and collapse
+
+A note with children shows a chevron to the left of its title. Click it to hide or show the children. While collapsed, the note shows how many notes are inside it.
+
+Children are indented under their parent and sorted the same way as the rest of the list (by **Date** or **Name**). inkwell doesn't remember which branches you collapsed.
+
+## Find your way up
+
+When you open a nested note, the breadcrumb at the top of the editor shows its whole path: **Folder › Parent › Child**. Click any parent in the path to jump to it.
+
+## Moving and deleting
+
+- **Moving a parent to another folder** moves all of its children with it.
+- **Moving a child to a different folder on its own** detaches it from its parent, because a child stays in its parent's folder.
+- **Deleting a parent deletes every note nested under it**, at any depth. The confirmation tells you how many notes will go, for example *Delete "Roadmap" and the 4 notes nested under it?* Read it before you confirm.
+
+## How it's stored
+
+Nesting is saved in the note's own file, as one extra line in its frontmatter:
+
+```yaml
+---
+id: note-abc123
+parent: note-xyz789
+---
+```
+
+`parent` is the `id` of the parent note. The note files stay flat on disk, so nothing is moved or renamed, and a vault from an older version opens unchanged. Shared vaults carry the nesting to everyone who syncs.
+
+If a note's parent can't be found (for example, you deleted the parent file outside inkwell), the note simply shows at the top level.
+
+## Limits
+
+- Nesting is shown in the **note list**. The folder tree in the sidebar and the tab bar are unchanged.
+- Notes you opened with **Open file…** can't be nested, because inkwell doesn't write to those files.

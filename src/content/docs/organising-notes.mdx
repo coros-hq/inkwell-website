@@ -3,7 +3,7 @@ title: Organising notes
 description: Group notes in folders, rename and reorder them, pin favourites, and choose between a note list and tabs.
 group: Organise
 order: 9
-related: [vaults-and-files, search, shortcuts]
+related: [nested-notes, vaults-and-files, search, shortcuts]
 ---
 
 import tabsMode from '../../assets/docs/tabs.png';
@@ -64,6 +64,10 @@ You can also drag notes from the note list onto a folder.
   Moving a folder moves its whole tree on disk, so everything inside comes along.
 </Callout>
 
+## Nest notes under each other
+
+Besides folders, a note can have child notes of its own, to any depth. Hover a note in the list and click **+** to add a sub-note, or drag one note onto another to nest it. See [Nested notes](/docs/nested-notes/).
+
 ## Select several notes
 
 - <Kbd keys="mod" /> + click adds or removes a single note from the selection.
@@ -84,6 +88,8 @@ Deleted notes and folders go to **Trash**, not straight off your disk. Open **Tr
 <Callout type="note" title="Trash lives in the vault">
   Trashed items are kept in the vault's `.inkwell/trash` folder, so they take up disk space until you empty the trash. If inkwell can't move an item to the trash, it tells you and does not delete it.
 </Callout>
+
+If a note has notes nested under it, deleting it deletes them too, and the confirmation says how many. See [Nested notes](/docs/nested-notes/#moving-and-deleting).
 
 Notes you opened with **Open file…** are different. They show **Remove from library** instead of delete, and the file on disk is never touched.
 
@@ -110,16 +116,21 @@ Tags let you label folders with a name and a colour, and then filter or group by
 
 Click the **+** in the **Tags** section of the sidebar, then enter a name and choose a colour.
 
+You can also create one on the spot from a note or folder. Hover its row in the sidebar and click the **tag** icon, then type a name. Pick an existing tag from the list, or press <Kbd keys="enter" /> to create a new one and apply it in the same step.
+
 ### Assign tags to folders
 
 - <Kbd keys="mod" /> + click one or more folders to tick them, then click a tag.
+- Or hover a folder and click its **tag** icon.
 - Or right-click a folder and toggle tags in its menu. If the folder is part of a selection, the change applies to every ticked folder.
 
 Tagged folders show coloured dots on the right of the row.
 
+If you have a lot of tags, the tag list in the menu scrolls, so the actions below it, like **Group by tag** and **Delete folder**, stay in view. Right-click menus also stay inside the window instead of running off its edge.
+
 ### Filter by tag
 
-With no folders selected, click a tag to filter the sidebar to the folders that carry it.
+With no folders selected, click a tag to see everything that carries it. The matching folders and notes appear above the folder tree, each under its full folder path, so notes with the same name in different folders stay distinguishable. Click a result to open it: the folder is revealed and briefly highlighted in the tree below.
 
 ### Edit or delete a tag
 
@@ -133,8 +144,8 @@ Tags are stored per vault in `.inkwell/folders.json`. You can also find tagged f
 
 ## Note tags
 
-Each note can carry tags in its frontmatter (for example `tags: [project, ideas]`). Searching also looks through tags. See [Vaults and your files](/docs/vaults-and-files/#the-note-file-format).
+Each note can carry tags in its frontmatter (for example `tags: [project, ideas]`). You don't have to edit the file: hover a note in the sidebar and click its **tag** icon, or use the tag menu in the editor. <Kbd keys="mod" /> + click several notes first to tag them all at once. Note tags show as flat coloured badges in the note list. Searching also looks through tags. See [Vaults and your files](/docs/vaults-and-files/#the-note-file-format).
 
 <Callout type="note" title="TODO: verify">
-  Confirm whether the order you drag notes into within a folder is remembered after restarting inkwell, and whether there's any in-app way to add tags to a note.
+  Confirm whether the order you drag notes into within a folder is remembered after restarting inkwell.
 </Callout>
