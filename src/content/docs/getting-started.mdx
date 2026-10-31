@@ -20,6 +20,26 @@ inkwell runs on macOS, Windows and Linux. Download the installer for your system
 | Windows (64-bit) | [`.exe` installer](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_x64-setup.exe) or [`.msi`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_x64_en-US.msi) |
 | Linux (x86_64) | [`.AppImage`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_amd64.AppImage), [`.deb`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_amd64.deb) or [`.rpm`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell-2.1.1-1.x86_64.rpm) |
 
+<a id="opening-unsigned"></a>
+
+### Opening the app for the first time
+
+inkwell is not code-signed yet, so macOS and Windows show a security warning the first time you open it. The app is safe to run, and you only need to do this once. Linux shows no warning.
+
+**macOS.** Drag inkwell to **Applications** and open it. If macOS says it "can't be opened" or "cannot verify the developer":
+
+1. Open **System Settings → Privacy & Security**.
+2. Scroll to the **Security** section and click **Open Anyway** next to the message about inkwell.
+3. Confirm with your password or Touch ID, then click **Open**.
+
+On macOS 14 and earlier you can instead right-click (or Control-click) inkwell in **Applications**, choose **Open**, and click **Open** again. If macOS reports the app as "damaged", run this in Terminal, then open it again:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/inkwell.app
+```
+
+**Windows.** If a blue **Windows protected your PC** (SmartScreen) window appears, click **More info**, then **Run anyway**.
+
 <a id="windows-portable"></a>
 
 **Windows portable.** If you'd rather not install anything, download `inkwell_<version>_x64-portable.zip` from the [releases page](https://github.com/coros-hq/inkwell/releases/latest), unzip it and run `inkwell.exe`. It needs no installer or admin rights. A portable copy doesn't update itself: when an update is available, the update button opens the releases page so you can download the new zip.

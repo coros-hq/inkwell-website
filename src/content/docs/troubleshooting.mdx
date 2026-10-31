@@ -133,6 +133,20 @@ That's intentional, so quick capture keeps working. Use **Quit inkwell** from th
 
 Click it to try again. If it keeps failing, download the latest installer manually from the [releases page](https://github.com/coros-hq/inkwell/releases/latest).
 
+### macOS or Windows says the app can't be opened or is from an unknown publisher
+
+inkwell is not code-signed yet, so macOS and Windows show a warning the first time you open it. The app is safe, and you only need to do this once. Linux shows no warning.
+
+**macOS.** Open **System Settings → Privacy & Security**, scroll to **Security**, click **Open Anyway** next to the message about inkwell, then confirm and click **Open**. On macOS 14 and earlier you can instead right-click inkwell in **Applications**, choose **Open**, and click **Open** again. If macOS says the app is "damaged", run this in Terminal and open it again:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/inkwell.app
+```
+
+**Windows.** In the blue **Windows protected your PC** (SmartScreen) window, click **More info**, then **Run anyway**.
+
+See also [Getting started](/docs/getting-started/#opening-unsigned).
+
 <Callout type="note" title="TODO: verify">
-  The "Load failed" and "Update failed" entries come from error strings in the source. Reproduce each on a clean install before publishing. Also add a macOS Gatekeeper / Windows SmartScreen note once the signing and notarisation status of the installers is known.
+  The "Load failed" and "Update failed" entries come from error strings in the source. Reproduce each on a clean install before publishing.
 </Callout>
