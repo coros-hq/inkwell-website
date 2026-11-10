@@ -16,9 +16,9 @@ inkwell runs on macOS, Windows and Linux. Download the installer for your system
 
 | System | Download |
 | --- | --- |
-| macOS (Apple silicon and Intel) | [`.dmg`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_universal.dmg) |
-| Windows (64-bit) | [`.exe` installer](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_x64-setup.exe) or [`.msi`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_x64_en-US.msi) |
-| Linux (x86_64) | [`.AppImage`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_amd64.AppImage), [`.deb`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell_2.1.1_amd64.deb) or [`.rpm`](https://github.com/coros-hq/inkwell/releases/download/v2.1.1/inkwell-2.1.1-1.x86_64.rpm) |
+| macOS (Apple silicon and Intel) | [`.dmg`](https://github.com/coros-hq/inkwell/releases/download/v2.3.0/inkwell_2.3.0_universal.dmg) |
+| Windows (64-bit) | [`.exe` installer](https://github.com/coros-hq/inkwell/releases/download/v2.3.0/inkwell_2.3.0_x64-setup.exe) or [`.msi`](https://github.com/coros-hq/inkwell/releases/download/v2.3.0/inkwell_2.3.0_x64_en-US.msi) |
+| Linux (x86_64) | [`.AppImage`](https://github.com/coros-hq/inkwell/releases/download/v2.3.0/inkwell_2.3.0_amd64.AppImage), [`.deb`](https://github.com/coros-hq/inkwell/releases/download/v2.3.0/inkwell_2.3.0_amd64.deb) or [`.rpm`](https://github.com/coros-hq/inkwell/releases/download/v2.3.0/inkwell-2.3.0-1.x86_64.rpm) |
 
 <a id="opening-unsigned"></a>
 
@@ -42,7 +42,7 @@ xattr -dr com.apple.quarantine /Applications/inkwell.app
 
 <a id="windows-portable"></a>
 
-**Windows portable.** If you'd rather not install anything, download `inkwell_<version>_x64-portable.zip` from the [releases page](https://github.com/coros-hq/inkwell/releases/latest), unzip it and run `inkwell.exe`. It needs no installer or admin rights. A portable copy doesn't update itself: when an update is available, the update button opens the releases page so you can download the new zip.
+**Windows portable.** If you'd rather not install anything, download `inkwell_<version>_x64-portable.zip` from the [releases page](https://github.com/coros-hq/inkwell/releases/latest), unzip it and run `inkwell.exe`. It needs no installer or admin rights. A portable copy keeps everything (settings, themes and your default vault) in a `data` folder next to `inkwell.exe`, so you can move the whole folder to another drive or computer. It doesn't update itself: when an update is available, the update button opens the releases page. Download the new zip and replace `inkwell.exe`, keeping the `data` folder.
 
 inkwell checks for new versions in the background. When one is available, an **Update available · vX.Y.Z** button appears at the bottom of the sidebar. Click it to download and install; the app restarts by itself.
 

@@ -80,6 +80,14 @@ inkwell keeps its own bookkeeping in a `.inkwell` folder inside the vault. It's 
   Unless you link the canvas to a vault in **Settings → Features → Canvas storage**, your drawing is saved in a `.inkwell` folder in your home directory and is shared across every vault. See [Canvas](/docs/canvas/).
 </Callout>
 
+## Back up your vault
+
+<a id="back-up-your-vault"></a>
+
+Go to **Settings → Backup**, click **Choose folder…**, then **Back up now**. inkwell zips the whole vault into that folder, with the vault's name as the top folder, so unzipping gives you a vault you can open straight away. Notes, attachments and your other files are included. The `.git` history, the trash and `node_modules` are left out.
+
+Turn on **Automatic backups** to back up each time inkwell opens a vault, at most once a day. **Keep** controls how many backups stay; older ones are deleted. Pointing the backup folder at a synced cloud folder or an external drive gives you an off-computer copy. Nothing is uploaded by inkwell itself.
+
 ## Switch vaults
 
 You can have as many vaults as you want and switch at any time.

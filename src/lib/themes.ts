@@ -34,6 +34,7 @@ export const themes: Theme[] = [
 	{ id: 'noir-ember', label: 'Noir Ember', description: 'Luxury black with burnt orange', mode: 'dark', bg: '#0f0f0f', sidebar: '#0a0a0a', accent: '#fa7a1a', text: '#f0ede8', border: '#242424' },
 	{ id: 'catppuccin-mocha', label: 'Catppuccin Mocha', description: 'Soothing pastel dark with mauve', mode: 'dark', bg: '#1e1e2e', sidebar: '#181825', accent: '#cba6f7', text: '#cdd6f4', border: '#313244' },
 	{ id: 'catppuccin-latte', label: 'Catppuccin Latte', description: 'Soothing pastel light with mauve', mode: 'light', bg: '#eff1f5', sidebar: '#e6e9ef', accent: '#8839ef', text: '#4c4f69', border: '#ccd0da' },
+	{ id: 'finder-blue', label: 'Finder Blue', description: 'Clean light with the macOS folder sky blue', mode: 'light', bg: '#f4f9fd', sidebar: '#e6f1fa', accent: '#2f9edb', text: '#1c3347', border: '#cfe3f2' },
 	{ id: 'ivory-ember', label: 'Ivory Ember', description: 'Luxury white with burnt orange', mode: 'light', bg: '#fdfcfa', sidebar: '#f7f5f2', accent: '#e8590c', text: '#1c1816', border: '#e5e2dc' },
 ];
 
